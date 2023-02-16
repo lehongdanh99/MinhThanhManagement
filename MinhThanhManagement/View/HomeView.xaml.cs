@@ -28,5 +28,43 @@ namespace MinhThanhManagement.View
             }
             
         }
+
+        private void AddStorageClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DetailStorageView detailStorageView = new DetailStorageView();
+                detailStorageView.Show();
+                this.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void closeApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void minimizeApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
