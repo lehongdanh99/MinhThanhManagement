@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinhThanhManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,12 @@ namespace MinhThanhManagement.View
     /// </summary>
     public partial class HomeView : Window
     {
+
+        public List<StorageModel> ListStorageModelEdit = new List<StorageModel>();
         public HomeView()
         {
             InitializeComponent();
-            foreach(var item in GlobalDef.ListStorageModel)
-            {
-                DataGridXaml.Items.Add(item);
-            }
+            
             
         }
 
@@ -35,13 +35,15 @@ namespace MinhThanhManagement.View
             {
                 DetailStorageView detailStorageView = new DetailStorageView();
                 detailStorageView.Show();
-                this.WindowState = WindowState.Minimized;
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
 
         private void closeApp(object sender, RoutedEventArgs e)
         {
@@ -66,5 +68,35 @@ namespace MinhThanhManagement.View
                 MessageBox.Show(ex.Message);
             }
         }
+        private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var editedElement = e.EditingElement as TextBox;
+            if (editedElement != null)
+            {
+                string type = e.Column.SortMemberPath;
+                var editedValue = editedElement.Text;
+                if (type.Equals("Group"))
+                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Group = editedValue;
+                if (type.Equals("Name"))
+                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Name = editedValue;
+                if (type.Equals("Price"))
+                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Price = Convert.ToDouble(editedValue);
+                if (type.Equals("Remain"))
+                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Remain = editedValue;
+                // Handle the edited value here
+            }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumber(e.Text);
+        }
+
+        private bool IsNumber(string text)
+        {
+            return int.TryParse(text, out _);
+        }
+
+
     }
 }

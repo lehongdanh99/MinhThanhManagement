@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinhThanhManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace MinhThanhManagement.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

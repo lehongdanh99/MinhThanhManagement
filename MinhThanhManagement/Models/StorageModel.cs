@@ -9,13 +9,17 @@ namespace MinhThanhManagement.Models
 
     public class StorageModel
     {
-
+        private int id;
         private string group;
         private string name;
         private string remain;
         private double price;
 
-
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public string Group
         {

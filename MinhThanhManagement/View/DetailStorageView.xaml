@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MinhThanhManagement.View"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="DetailStorageView" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" Height="720" Width="1280" AllowsTransparency="True">
+        Title="DetailStorageView" Background="Transparent" WindowStyle="None" Height="250" Width="400"  WindowStartupLocation="CenterScreen" AllowsTransparency="True">
     <Window.Resources>
         <!--Close and Minimize button-->
         <Style x:Key="closeButton" TargetType="{x:Type Button}">
@@ -51,8 +51,8 @@
         </Style>
     </Window.Resources>
 
-    <Border CornerRadius="20" Background="Transparent">
-        <Grid  Height="250" Width="400" Background="White">
+    <Border Background="White" CornerRadius="20">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="2*"/>
@@ -78,7 +78,7 @@
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <TextBlock  Text="Số lượng" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>
-                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0"/>
+                    <TextBox Width="100" Height="30" Margin="40, 0 ,10,0"/>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <TextBlock  Text="Tên SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>

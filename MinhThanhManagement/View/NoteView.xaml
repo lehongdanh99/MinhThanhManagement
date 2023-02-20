@@ -1,0 +1,33 @@
+﻿<Window x:Class="MinhThanhManagement.View.NoteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinhThanhManagement.View"
+        mc:Ignorable="d"
+        Title="NoteView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBox x:Name="txtNote" Margin="5" Width="200" TextWrapping="Wrap" AcceptsReturn="True" />
+            <Button Content="Add" Margin="5" />
+        </StackPanel>
+
+        <ListBox Grid.Row="1" Margin="5" ItemsSource="{Binding Notes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StatusBar Grid.Row="2" Height="20">
+            <TextBlock Text="{Binding Status}" />
+        </StatusBar>
+    </Grid>
+</Window>

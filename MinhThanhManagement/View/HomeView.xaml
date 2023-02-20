@@ -8,6 +8,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         DataContext="{StaticResource HomeViewModel}"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         Title="HomeView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
@@ -137,8 +138,9 @@
             
         </Style>
 
-        <Style x:Key="addButton" TargetType="Button">
-            <Setter Property="Background" Value="Green"/>
+
+        <Style x:Key="reloadButton" TargetType="Button">
+            <Setter Property="Background" Value="Yellow"/>
             <Setter Property="Foreground" Value="#ffffff"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="35"/>
@@ -157,18 +159,44 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Background" Value="LightYellow"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="addButton" TargetType="Button">
+            <Setter Property="Background" Value="Blue"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
                     <Setter Property="Foreground" Value="#ffffff"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style x:Key="gridEditButton" TargetType="Button">
-            <Setter Property="Background" Value="#512da8"/>
+            <Setter Property="Background" Value="Green"/>
             <Setter Property="Foreground" Value="#ffffff"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="BorderBrush" Value="#4a148c"/>
+            <Setter Property="BorderBrush" Value="LightGreen"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -180,7 +208,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#673ab7"/>
+                    <Setter Property="Background" Value="LightGreen"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -213,6 +241,8 @@
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Margin" Value="0 4 0 0"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
             <Setter Property="ValidationErrorTemplate">
@@ -374,7 +404,7 @@
                                 <TextBlock Text="Lịch sử"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="2" Margin="10 5" Style="{DynamicResource menuButton}">
+                        <Button Grid.Column="2" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateNoteCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Note" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Ghi chú"></TextBlock>
@@ -468,30 +498,21 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        
-                        <TextBlock Text="QUẢN LÝ KHO" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        
-                        <!--<Grid Grid.Column="0" Width="auto" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Loại SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="18"/>
-                            <TextBox Grid.Column="1" Width="100" Text="{Binding TxtTypeInput}"  Margin="10, 0 ,10,0"/>
-                            <TextBlock Grid.Column="2" Text="Tên SP"  Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="18"/>
-                            <TextBox Grid.Column="3" Margin="10,0" Text="{Binding TxtNameInput}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                            <TextBlock Grid.Column="4" Text="SL"  Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="18"/>
-                            <TextBox Grid.Column="5" Margin="10,0" Text="{Binding TxtNumInput}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                            <TextBlock Grid.Column="6" Text="Giá SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="18"/>
-                            <TextBox Grid.Column="7" Margin="10,0" Text="{Binding TxtPriceInput}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        </Grid>-->
 
+                        <TextBlock Text="QUẢN LÝ KHO" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
+
+                        <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 250 0" Command="{Binding ReloadCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Reload" Foreground="Black" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                                <TextBlock Text="Cập nhật" Foreground="Black"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource gridEditButton}"  HorizontalAlignment="Right" Height="35" Width="80" Margin="0 0 160 0" Command="{Binding SaveCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                                <TextBlock Text="Lưu"/>
+                            </StackPanel>
+                        </Button>
                         <Button Style="{StaticResource addButton}"  HorizontalAlignment="Right" Margin="0" Click="AddStorageClick">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
@@ -501,62 +522,105 @@
 
                     </Grid>
 
-                    
-                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml"  
-                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}">
+
+                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
+                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
+                               VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-                            <DataGridTemplateColumn Header="Loại Sản Phẩm" IsReadOnly="True" Width="*">
+                            <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Loại Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Group}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Tên Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Name}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Số Lượng Còn Lại" CanUserResize="False" Width="*" Binding="{Binding Remain}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Giá Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Price}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <!--<DataGridTemplateColumn Header="Loại Sản Phẩm" IsReadOnly="False" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            
-                                                <TextBlock Text="{Binding Group}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0 0 0 1"/>
+
+                                            <TextBox Text="{Binding Group}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center"  Margin="0 0 0 1" />
                                             
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Tên Sản Phẩm" IsReadOnly="True" CanUserResize="False" Width="*">
+                            <DataGridTemplateColumn Header="Tên Sản Phẩm" IsReadOnly="False" CanUserResize="False" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                             
-                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0 0 0 1"/>
+
+                                            <TextBox Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
+                                                     />
                                             
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Số Lượng Còn Lại" IsReadOnly="True" CanUserResize="False" Width="*">
+                            <DataGridTemplateColumn Header="Số Lượng Còn Lại" IsReadOnly="False" CanUserResize="False" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                             
-                                                <TextBlock Text="{Binding Remain}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0 0 0 1"/>
+
+                                            <TextBox Text="{Binding Remain}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
+                                                     PreviewTextInput="TextBox_PreviewTextInput"/>
                                             
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Giá Sản Phẩm" IsReadOnly="True" CanUserResize="False" Width="*">
+                            <DataGridTemplateColumn Header="Giá Sản Phẩm" IsReadOnly="False" CanUserResize="False" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                             
-                                                <TextBlock Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0 0 0 1"/>
+
+                                            <TextBox Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Center" TextDecorations="None" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
+                                                     PreviewTextInput="TextBox_PreviewTextInput"/>
                                             
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="Auto">
+                            </DataGridTemplateColumn>-->
+                            <DataGridTemplateColumn Header="Operations" IsReadOnly="False" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Style="{DynamicResource gridEditButton}">
+                                            <!--<Button Style="{DynamicResource gridEditButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>
+                                            </Button>-->
                                             <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0">
                                                 <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>

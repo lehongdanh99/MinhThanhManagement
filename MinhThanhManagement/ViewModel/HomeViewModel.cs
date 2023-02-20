@@ -1,8 +1,10 @@
-﻿using MinhThanhManagement.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using MinhThanhManagement.Models;
 using MinhThanhManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +15,18 @@ namespace MinhThanhManagement.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
+
         CommonMethod commonMethod = new CommonMethod();
 
+        public ICommand SaveCommand { get; private set; }
+
+        public ICommand ReloadCommand { get; private set; }
+
+        public ICommand NavigateNoteCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
 
 
-        private List<StorageModel> listStorage = new List<StorageModel>();
+        private ObservableCollection<StorageModel> listStorage = new ObservableCollection<StorageModel>();
 
         private List<string> typeStorage;
 
@@ -75,7 +83,11 @@ namespace MinhThanhManagement.ViewModel
             set 
             { 
                 selectedItemStorage = value;
-                StorageSelected = ListStorage[SelectedItemStorage];
+                if(SelectedItemStorage >=0)
+                {
+                    StorageSelected = ListStorage[SelectedItemStorage];
+                }    
+                
             }
         }
 
@@ -94,10 +106,10 @@ namespace MinhThanhManagement.ViewModel
             set { isEnableEditBtn = value; }
         }
 
-        public List<StorageModel> ListStorage
+        public ObservableCollection<StorageModel> ListStorage
         {
             get { return listStorage; }
-            set { listStorage = value; }
+            set { listStorage = value; OnPropertyChanged(nameof(ListStorage)); }
         }
         public HomeViewModel()
         {
@@ -105,18 +117,31 @@ namespace MinhThanhManagement.ViewModel
         }
         public void Initialize()
         {
-            ListStorage = GlobalDef.ListStorageModel;
-            //GetTypeStorage(ListStorage);
-            //SelectedItemStorage = 0;
-            commonMethod.ReadFileCsv();
+            //ListStorage = GlobalDef.ListStorageModel;
+            ReloadCommand = new RelayCommand(ReloadStorageCommand);
+            SaveCommand = new RelayCommand(SaveStorageCommand);
+            NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
+            ListStorage = commonMethod.ReadFileCsv();
+            GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
 
         }
 
-
-
-        private void AddStorageCommand()
+        private void ReloadStorageCommand()
         {
-            throw new NotImplementedException();
+            
+            GlobalDef.ListStorageModel[0].Name.ToString();
+            ListStorage = commonMethod.ReadFileCsv();
+        }
+
+        private void NavigateHometoNoteCommand()
+        {
+            NoteView noteView = new NoteView();
+            noteView.Show();
+        }
+
+        private void SaveStorageCommand()
+        {
+            
         }
 
 
