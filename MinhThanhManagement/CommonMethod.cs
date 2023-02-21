@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,37 @@ namespace MinhThanhManagement
         public void ConvertToModel()
         {
 
+        }
+        public bool WriteFileCsv(ObservableCollection<StorageModel> listItem, string filePath)
+        {
+            List<StorageModel> newList = listItem.ToList();
+            StringBuilder stringBuilder= new StringBuilder();
+            foreach(StorageModel item in newList)
+            {
+                stringBuilder.Append(item.Id.ToString() + ",");
+                stringBuilder.Append(item.Group.ToString() + ",");
+                stringBuilder.Append(item.Name.ToString() + ",");
+                stringBuilder.Append(item.Remain.ToString() + ",");
+                stringBuilder.Append(item.Price.ToString() + "\n" );
+            }           
+            if (!File.Exists(filePath))
+            {
+                try
+                {
+                    File.Create(filePath);
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            if (!filePath.Contains(".csv"))
+            {
+                filePath += ".csv";
+            }
+            File.WriteAllText(filePath, stringBuilder.ToString());
+
+            return true;
         }
     }
 }
