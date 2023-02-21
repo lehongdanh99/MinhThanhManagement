@@ -71,18 +71,20 @@ namespace MinhThanhManagement.View
         private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             var editedElement = e.EditingElement as TextBox;
+            DataGridRow row = (DataGridRow)DataGridXaml.ItemContainerGenerator.ContainerFromItem(e.Row.Item);
+            int rowIndex = DataGridXaml.ItemContainerGenerator.IndexFromContainer(row);
             if (editedElement != null)
             {
                 string type = e.Column.SortMemberPath;
                 var editedValue = editedElement.Text;
                 if (type.Equals("Group"))
-                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Group = editedValue;
+                    GlobalDef.ListStorageModel[rowIndex].Group = editedValue;
                 if (type.Equals("Name"))
-                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Name = editedValue;
+                    GlobalDef.ListStorageModel[rowIndex].Name = editedValue;
                 if (type.Equals("Price"))
-                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Price = Convert.ToDouble(editedValue);
+                    GlobalDef.ListStorageModel[rowIndex].Price = Convert.ToDouble(editedValue);
                 if (type.Equals("Remain"))
-                    GlobalDef.ListStorageModel[e.Column.DisplayIndex].Remain = editedValue;
+                    GlobalDef.ListStorageModel[rowIndex].Remain = editedValue;
                 // Handle the edited value here
             }
         }
@@ -97,6 +99,17 @@ namespace MinhThanhManagement.View
             return int.TryParse(text, out _);
         }
 
-
+        //private void DeleteStorage(object sender, RoutedEventArgs e)
+        //{
+        //    DataGridRow row = (DataGridRow)DataGridXaml.ItemContainerGenerator.ContainerFromItem(e.Row.Item);
+        //    int rowIndex = DataGridXaml.ItemContainerGenerator.IndexFromContainer(row);
+        //    foreach (var item in GlobalDef.ListStorageModel)
+        //    {
+        //        if (item.Id - 1 == rowIndex)
+        //        {
+        //            GlobalDef.ListStorageModel.RemoveAt(rowIndex);
+        //        }
+        //    }
+        //}
     }
 }

@@ -20,6 +20,8 @@ namespace MinhThanhManagement.ViewModel
 
         public ICommand SaveCommand { get; private set; }
 
+        public ICommand DeleteCommand { get; private set; }
+
         public ICommand ReloadCommand { get; private set; }
 
         public ICommand NavigateNoteCommand { get; private set; }
@@ -120,6 +122,7 @@ namespace MinhThanhManagement.ViewModel
             //ListStorage = GlobalDef.ListStorageModel;
             ReloadCommand = new RelayCommand(ReloadStorageCommand);
             SaveCommand = new RelayCommand(SaveStorageCommand);
+            DeleteCommand = new RelayCommand(DeleteStorageCommand);
             NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
             ListStorage = commonMethod.ReadFileCsv();
             GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
@@ -141,9 +144,42 @@ namespace MinhThanhManagement.ViewModel
 
         private void SaveStorageCommand()
         {
-            
+            ListStorage = GlobalDef.ListStorageModel;
         }
 
+        private void DeleteStorageCommand()
+        {
+            foreach(var item in ListStorage)
+            {
+                if (item.Id - 1 == SelectedItemStorage)
+                {
+                    GlobalDef.ListStorageModel.RemoveAt(SelectedItemStorage);
+                }
+            }
+            ListStorage = GlobalDef.ListStorageModel;
+        }
 
+        //private bool CanDelete
+        //{
+        //    get { return ListStorage[SelectedItemStorage] != null; }
+        //}
+
+        //private ICommand m_deleteCommand;
+        //public ICommand DeleteCommand
+        //{
+        //    get
+        //    {
+        //        if (m_deleteCommand == null)
+        //        {
+        //            m_deleteCommand = new RelayCommand(param => Delete((Result)param), param => CanDelete);
+        //        }
+        //        return m_deleteCommand;
+        //    }
+        //}
+
+        //private void Delete(StorageModel result)
+        //{
+        //    ListStorage.Remove(result);
+        //}
     }
 }

@@ -20,7 +20,7 @@ namespace MinhThanhManagement
             {
                 StorageModel storeModel = new StorageModel();
                 string[] models = line.Split(',');
-                storeModel.Id = (Convert.ToInt16(models[0].ToString()));
+                storeModel.Id = (Convert.ToInt32(models[0].ToString()));
                 storeModel.Group = (models[1]);
                 storeModel.Name = (models[2]);
                 storeModel.Remain = (models[3]);
