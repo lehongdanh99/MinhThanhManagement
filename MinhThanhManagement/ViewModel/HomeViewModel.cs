@@ -145,6 +145,12 @@ namespace MinhThanhManagement.ViewModel
         private void SaveStorageCommand()
         {
             ListStorage = GlobalDef.ListStorageModel;
+            if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath + "MinhThanhManagement.csv"))
+            {
+                MessageBox.Show("ok");
+            }
+            else MessageBox.Show("Not Ok");
+        }
         }
 
         private void DeleteStorageCommand()
