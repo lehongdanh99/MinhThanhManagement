@@ -23,5 +23,65 @@ namespace MinhThanhManagement.View
         {
             InitializeComponent();
         }
+
+        private void closeApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void minimizeApp(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void AddStorageClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DetailStorageView detailStorageView = new DetailStorageView();
+                detailStorageView.Show();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var editedElement = e.EditingElement as TextBox;
+            DataGridRow row = (DataGridRow)DataGridXaml.ItemContainerGenerator.ContainerFromItem(e.Row.Item);
+            int rowIndex = DataGridXaml.ItemContainerGenerator.IndexFromContainer(row);
+            if (editedElement != null)
+            {
+                string type = e.Column.SortMemberPath;
+                var editedValue = editedElement.Text;
+                if (type.Equals("Group"))
+                    GlobalDef.ListStorageModel[rowIndex].Group = editedValue;
+                if (type.Equals("Name"))
+                    GlobalDef.ListStorageModel[rowIndex].Name = editedValue;
+                if (type.Equals("Price"))
+                    GlobalDef.ListStorageModel[rowIndex].Price = Convert.ToDouble(editedValue);
+                if (type.Equals("Remain"))
+                    GlobalDef.ListStorageModel[rowIndex].Remain = editedValue;
+                // Handle the edited value here
+            }
+        }
+
     }
 }
