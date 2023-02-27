@@ -54,7 +54,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!--Noti and Minimize button-->
+        <Style x:Key="NotiButton" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="50">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--texbox search style-->
         <Style x:Key="textboxSearch" TargetType="TextBox">
             <Setter Property="Background" Value="White"/>
@@ -441,6 +456,25 @@
                     <Icon:PackIconMaterial Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6"
                                            HorizontalAlignment="Right"/>
                 </Grid>
+                <Button Width="40" Height="40" Click="Button_Click" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 0 20 0">
+                    <StackPanel>
+                        
+                        <Icon:PackIconMaterial Kind="Bell" Foreground="Gray" Width="40" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        
+                        <TextBlock Text="{Binding NotificationCount}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Margin="0,-60,-30,0"/>     
+                        <Border Background="Red" 
+                            Width="15" 
+                            Height="15" 
+                            CornerRadius="10" 
+                            Margin="0,-60,-30,0" 
+                            Visibility="{Binding NotificationCount, 
+                                         Converter={StaticResource NotificationCountToVisibilityConverter}}"/>      
+                    </StackPanel>
+                </Button>
+
 
                 <!--<Grid Grid.Row="1" Margin="0 10">
                     <Grid.ColumnDefinitions>
