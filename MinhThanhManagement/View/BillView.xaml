@@ -231,7 +231,7 @@
                 
             </StackPanel>
             <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
-                              Grid.Row="3" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
+                              Grid.Row="3" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" 
                                VerticalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="STT" CanUserResize="False" Width="50" Binding="{Binding Id}">

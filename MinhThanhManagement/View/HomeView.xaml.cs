@@ -111,5 +111,15 @@ namespace MinhThanhManagement.View
         //        }
         //    }
         //}
+
+        private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            if (e.Row.DataContext == null)
+            {
+                e.Row.Visibility = Visibility.Collapsed;
+                e.Row.Height = 0;
+            }
+        }
+
     }
 }

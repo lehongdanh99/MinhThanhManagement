@@ -78,18 +78,18 @@ namespace MinhThanhManagement.ViewModel
 
         public int SelectedItemStorage
         {
-            get 
-            { 
-                return selectedItemStorage; 
+            get
+            {
+                return selectedItemStorage;
             }
-            set 
-            { 
+            set
+            {
                 selectedItemStorage = value;
-                if(SelectedItemStorage >=0)
+                if (SelectedItemStorage >= 0)
                 {
                     StorageSelected = ListStorage[SelectedItemStorage];
-                }    
-                
+                }
+
             }
         }
 
@@ -131,7 +131,7 @@ namespace MinhThanhManagement.ViewModel
 
         private void ReloadStorageCommand()
         {
-            
+
             GlobalDef.ListStorageModel[0].Name.ToString();
             ListStorage = commonMethod.ReadFileCsv();
         }
@@ -151,11 +151,9 @@ namespace MinhThanhManagement.ViewModel
             }
             else MessageBox.Show("Not Ok");
         }
-        }
-
         private void DeleteStorageCommand()
         {
-            foreach(var item in ListStorage)
+            foreach (var item in ListStorage)
             {
                 if (item.Id - 1 == SelectedItemStorage)
                 {
@@ -188,4 +186,6 @@ namespace MinhThanhManagement.ViewModel
         //    ListStorage.Remove(result);
         //}
     }
+
+
 }

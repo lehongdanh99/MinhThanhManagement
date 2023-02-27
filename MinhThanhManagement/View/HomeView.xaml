@@ -12,6 +12,14 @@
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         Title="HomeView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
+        <Style x:Key="rowstyle" TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Height" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
         <!--menu button-->
         <Style x:Key="menuButton" TargetType="{x:Type Button}">
@@ -308,6 +316,10 @@
                     <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
                     <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Height" Value="0"/>
+                </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{DynamicResource MaterialDesignDataGridRowHoverBackground}"/>
                     <Setter Property="Foreground" Value="Black"/>
@@ -456,7 +468,7 @@
                     <Icon:PackIconMaterial Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6"
                                            HorizontalAlignment="Right"/>
                 </Grid>
-                <Button Width="40" Height="40" Click="Button_Click" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 0 20 0">
+                <Button Width="40" Height="40" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 0 20 0">
                     <StackPanel>
                         
                         <Icon:PackIconMaterial Kind="Bell" Foreground="Gray" Width="40" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -470,8 +482,7 @@
                             Height="15" 
                             CornerRadius="10" 
                             Margin="0,-60,-30,0" 
-                            Visibility="{Binding NotificationCount, 
-                                         Converter={StaticResource NotificationCountToVisibilityConverter}}"/>      
+                            />      
                     </StackPanel>
                 </Button>
 
@@ -557,8 +568,8 @@
 
 
                     <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
-                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
-                               VerticalScrollBarVisibility="Hidden">
+                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
+                               VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">
                                 <DataGridTextColumn.CellStyle>
@@ -657,7 +668,7 @@
                                             <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
                                               Path=DataContext.DeleteStorageCommand}"
                             CommandParameter="{Binding}">
-                                                <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
+                                                <Icon:PackIconMaterial Kind="Delete" Foreground="White" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>
                                         </StackPanel>
                                     </DataTemplate>
