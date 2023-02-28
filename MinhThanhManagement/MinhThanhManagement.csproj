@@ -87,9 +87,13 @@
     </ApplicationDefinition>
     <Compile Include="Models\NotesModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\DetailStorageViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
+    <Compile Include="View\BillView.xaml.cs">
+      <DependentUpon>BillView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DetailStorageView.xaml.cs">
       <DependentUpon>DetailStorageView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +120,10 @@
     <Page Include="ResouceXaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BillView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\DetailStorageView.xaml">
       <SubType>Designer</SubType>
@@ -150,6 +158,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="MinhThanhManagement.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MinhThanhNotes.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

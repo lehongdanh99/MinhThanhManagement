@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MinhThanhManagement.CommonMethod;
 
 namespace MinhThanhManagement.Models
 {
@@ -12,11 +13,11 @@ namespace MinhThanhManagement.Models
 		private DateTime noteDate;
 		private DateTime endDate;
 		private string placeNote;
-		private string nameNote;
+		private NoteName nameNote;
 		private string detailNote;
-		private string statusNote;
+		private NoteStatus statusNote;
 
-		public string StatusNote
+		public NoteStatus StatusNote
         {
 			get { return statusNote; }
 			set { statusNote = value; }
@@ -28,7 +29,7 @@ namespace MinhThanhManagement.Models
 			set { detailNote = value; }
 		}
 
-		public string NameNote
+		public NoteName NameNote
 		{
 			get { return nameNote; }
 			set { nameNote = value; }

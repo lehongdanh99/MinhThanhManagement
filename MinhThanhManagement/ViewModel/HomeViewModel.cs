@@ -115,6 +115,7 @@ namespace MinhThanhManagement.ViewModel
         }
         public HomeViewModel()
         {
+            NoteViewModel.GetInstance().NotificationCounting();
             Initialize();
         }
         public void Initialize()
@@ -138,8 +139,7 @@ namespace MinhThanhManagement.ViewModel
 
         private void NavigateHometoNoteCommand()
         {
-            NoteView noteView = new NoteView();
-            noteView.Show();
+            NoteView.GetInstance().Show();                
         }
 
         private void SaveStorageCommand()

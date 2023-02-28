@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinhThanhManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,17 @@ namespace MinhThanhManagement.View
     /// </summary>
     public partial class NoteView : Window
     {
-        public NoteView()
+
+        private static NoteView _instance;
+        public static NoteView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new NoteView();
+            }
+            return _instance;
+        }
+        private NoteView()
         {
             InitializeComponent();
         }
