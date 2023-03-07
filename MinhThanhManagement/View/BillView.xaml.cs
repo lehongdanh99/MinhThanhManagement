@@ -19,9 +19,25 @@ namespace MinhThanhManagement.View
     /// </summary>
     public partial class BillView : Window
     {
+        private static BillView _instance;
+        public static BillView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new BillView();
+            }
+            return _instance;
+        }
+        List<string> items = new List<string>();
+
         public BillView()
         {
             InitializeComponent();
+            foreach (var item in GlobalDef.ListStorageModel)
+            {
+                items.Add(item.Group + " " + item.Name);
+            }
+            ItemNameTxt.ItemsSource = items;
         }
     }
 }

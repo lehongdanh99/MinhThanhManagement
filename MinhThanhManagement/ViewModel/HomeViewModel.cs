@@ -25,6 +25,7 @@ namespace MinhThanhManagement.ViewModel
         public ICommand ReloadCommand { get; private set; }
 
         public ICommand NavigateNoteCommand { get; private set; }
+        public ICommand NavigateBillCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
 
 
@@ -125,6 +126,7 @@ namespace MinhThanhManagement.ViewModel
             SaveCommand = new RelayCommand(SaveStorageCommand);
             DeleteCommand = new RelayCommand(DeleteStorageCommand);
             NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
+            NavigateBillCommand = new RelayCommand(NavigateHometoBillCommand);
             ListStorage = commonMethod.ReadFileCsv();
             GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
 
@@ -141,7 +143,11 @@ namespace MinhThanhManagement.ViewModel
         {
             NoteView.GetInstance().Show();                
         }
-
+        private void NavigateHometoBillCommand()
+        {
+            BillView.GetInstance().InitializeComponent();
+            BillView.GetInstance().Show();
+        }
         private void SaveStorageCommand()
         {
             ListStorage = GlobalDef.ListStorageModel;
