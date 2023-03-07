@@ -4,10 +4,6 @@ using MinhThanhManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -26,6 +22,8 @@ namespace MinhThanhManagement.ViewModel
 
         public ICommand NavigateNoteCommand { get; private set; }
         public ICommand NavigateBillCommand { get; private set; }
+
+        public ICommand NavigateHistoryCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
 
 
@@ -127,6 +125,7 @@ namespace MinhThanhManagement.ViewModel
             DeleteCommand = new RelayCommand(DeleteStorageCommand);
             NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
             NavigateBillCommand = new RelayCommand(NavigateHometoBillCommand);
+            NavigateHistoryCommand = new RelayCommand(NavigateHometoHistoryCommand);
             ListStorage = commonMethod.ReadFileCsv();
             GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
 
@@ -145,8 +144,14 @@ namespace MinhThanhManagement.ViewModel
         }
         private void NavigateHometoBillCommand()
         {
-            BillView.GetInstance().InitializeComponent();
+            //BillView.GetInstance().InitializeComponent();
             BillView.GetInstance().Show();
+        }
+
+        private void NavigateHometoHistoryCommand()
+        {
+            //BillView.GetInstance().InitializeComponent();
+            HistoryView.GetInstance().Show();
         }
         private void SaveStorageCommand()
         {

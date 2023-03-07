@@ -33,14 +33,14 @@ namespace MinhThanhManagement.View
             InitializeComponent();
         }
 
-        public HistoryView historyView = new HistoryView();
+        
 
 
         private void closeApp(object sender, RoutedEventArgs e)
         {
             try
             {
-                this.Close();
+                this.Hide();
             }
             catch (Exception ex)
             {

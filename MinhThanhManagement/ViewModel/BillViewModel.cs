@@ -1,4 +1,5 @@
-﻿using MinhThanhManagement.Models;
+﻿using MaterialDesignThemes.Wpf;
+using MinhThanhManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,9 +20,68 @@ namespace MinhThanhManagement.ViewModel
             get { return itemNameTxt; }
             set { itemNameTxt = value; }
         }
+
+        private List<string> listAutoComplete = new List<string>();
+
+        public List<string> ListAutoComplete
+        {
+            get { return listAutoComplete; }
+            set { listAutoComplete = value; }
+        }
+
+        private string selectedItemAutoComplete;
+
+        public string SelectedItemAutoComplete
+        {
+            get => selectedItemAutoComplete;
+            set
+            {
+                selectedItemAutoComplete = value;
+                OnPropertyChanged(nameof(SelectedItemAutoComplete));
+                if(!string.IsNullOrEmpty(SelectedItemAutoComplete))
+                {
+                    PriceAuto = priceItem(SelectedItemAutoComplete);
+
+                }
+            }
+        }
+
+        private double priceAuto = 0;
+
+        public double PriceAuto
+        {
+            get { return priceAuto; }
+            set { priceAuto = value;
+                OnPropertyChanged(nameof(PriceAuto));
+            }
+        }
+
+
+
         //List<string> items = new List<string>();
         public BillViewModel() {
-    
+            foreach (var item in GlobalDef.ListStorageModel)
+            {
+                ListAutoComplete.Add(item.Group + " " + item.Name);
+            }
+        }
+        private double priceItem(string groupname)
+        {
+            if(!string.IsNullOrEmpty(groupname))
+            {
+                string[] s = groupname.Split(' ');
+                string name = s[1].ToString();
+
+                foreach (var item in GlobalDef.ListStorageModel)
+                {
+                    if (item.Name.Equals(name.ToString()))
+                    {
+                        return item.Price;
+                    }
+                }
+            }
+           
+            return 0 ;
         }
         
     }

@@ -3,5 +3,8 @@
                     xmlns:viewmodel="clr-namespace:MinhThanhManagement.ViewModel"
                     >
     <viewmodel:HomeViewModel x:Key="HomeViewModel"></viewmodel:HomeViewModel>
+    <viewmodel:BillViewModel x:Key="BillViewModel"></viewmodel:BillViewModel>
+    <viewmodel:HistoryViewModel x:Key="HistoryViewModel"></viewmodel:HistoryViewModel>
+    <viewmodel:NoteViewModel x:Key="NoteViewModel"></viewmodel:NoteViewModel>
     
 </ResourceDictionary>

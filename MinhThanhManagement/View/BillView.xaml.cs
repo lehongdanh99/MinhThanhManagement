@@ -28,16 +28,16 @@ namespace MinhThanhManagement.View
             }
             return _instance;
         }
-        List<string> items = new List<string>();
 
         public BillView()
         {
             InitializeComponent();
-            foreach (var item in GlobalDef.ListStorageModel)
-            {
-                items.Add(item.Group + " " + item.Name);
-            }
-            ItemNameTxt.ItemsSource = items;
+            
+        }
+
+        private void SelectionChange_AutoComplete(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

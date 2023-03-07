@@ -424,7 +424,7 @@
                                 <TextBlock Text="Kho"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="1" Margin="10 5" Style="{DynamicResource menuButton}">
+                        <Button Grid.Column="1" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateHistoryCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="History" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Lịch sử"></TextBlock>

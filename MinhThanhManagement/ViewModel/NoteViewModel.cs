@@ -11,7 +11,7 @@ namespace MinhThanhManagement.ViewModel
 {
     public class NoteViewModel : INotifyPropertyChanged
     {
-        private NoteViewModel() { }
+        public NoteViewModel() { }
 
       
         private static NoteViewModel _instance;
@@ -59,6 +59,14 @@ namespace MinhThanhManagement.ViewModel
         {
             get { return _status; }
             set { _status = value; }
+        }
+
+        private string test;
+
+        public string Test
+        {
+            get { return test; }
+            set { test = value; }
         }
 
         public void AddNote()
