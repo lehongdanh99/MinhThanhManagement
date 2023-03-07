@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinhThanhManagement.View"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         mc:Ignorable="d"
         Title="NoteView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
@@ -39,8 +38,8 @@
 
         <!--Close and Minimize button-->
         <Style x:Key="closeButton" TargetType="{x:Type Button}">
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="35"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -389,14 +388,14 @@
                                            HorizontalAlignment="Right"/>
                 </Grid>
 
-                <Button  Style="{DynamicResource closeButton}" Background="Yellow" HorizontalAlignment="Right" Margin="0 0 40 0" Click="minimizeApp">
+                <!--<Button  Style="{DynamicResource closeButton}" Background="Yellow" HorizontalAlignment="Right" Margin="0 0 40 0" Click="minimizeApp">
                     <StackPanel>
                         <Icon:PackIconMaterial Kind="Minus" Foreground="Black" Width="10" VerticalAlignment="Center"/>
                     </StackPanel>
-                </Button>
-                <Button  Style="{DynamicResource closeButton}" Background="Red" HorizontalAlignment="Right" Margin="0 0 10 0"  Click="closeApp">
+                </Button>-->
+                <Button  Style="{DynamicResource closeButton}" Background="Red" HorizontalAlignment="Left" Margin="10 0 0 0"  Click="closeApp">
                     <StackPanel>
-                        <Icon:PackIconMaterial Kind="Close" Foreground="Black" Width="10" VerticalAlignment="Center"/>
+                        <Icon:PackIconMaterial Kind="ArrowLeft" Foreground="Black" Width="20" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
@@ -449,7 +448,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Loại Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Group}">
+                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding Group}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -457,7 +456,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Tên Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Name}">
+                            <DataGridTextColumn Header="Chi tiết" CanUserResize="False" Width="*" Binding="{Binding Name}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -465,7 +464,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Số Lượng Còn Lại" CanUserResize="False" Width="*" Binding="{Binding Remain}">
+                            <DataGridTextColumn Header="Ngày Note" CanUserResize="False" Width="*" Binding="{Binding Remain}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -473,7 +472,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Giá Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Price}">
+                            <DataGridTextColumn Header="Ngày kết thúc" CanUserResize="False" Width="*" Binding="{Binding Price}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
