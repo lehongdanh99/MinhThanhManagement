@@ -35,6 +35,18 @@ namespace MinhThanhManagement.View
             
         }
 
+        private void close_page(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void SelectionChange_AutoComplete(object sender, SelectionChangedEventArgs e)
         {
 

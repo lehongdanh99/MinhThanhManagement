@@ -26,7 +26,14 @@ namespace MinhThanhManagement.View
 
         private void closeDialog(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            try
+            {
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

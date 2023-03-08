@@ -354,10 +354,13 @@
                     </Button>
                     <!--Year selection-->
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10 0 50">
-                        <TextBlock Text="Lịch" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 10" FontWeight="Bold"/>
+                        <TextBlock Text="Lịch" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 10" FontWeight="Bold" Foreground="DodgerBlue"/>
                         <Calendar FontSize="50" CalendarDayButtonStyle="{DynamicResource calendarDaybutton}"  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}"
                             Width="513" Height="567" />
                     </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Thông tin"  FontSize="20" HorizontalAlignment="Center" Margin="10" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
             </Grid>
         </Grid>
