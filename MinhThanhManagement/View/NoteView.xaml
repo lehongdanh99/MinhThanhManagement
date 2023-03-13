@@ -7,6 +7,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
         mc:Ignorable="d"
+        DataContext="{StaticResource NoteViewModel}"
         Title="NoteView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
 
@@ -436,11 +437,12 @@
                     </Grid>
 
 
-                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
+                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  ItemsSource="{Binding ListNotes}" AutoGenerateColumns="False"
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
                                VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">
+                            
+                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding NameNote}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -448,7 +450,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding Group}">
+                            <DataGridTextColumn Header="Chi tiết" CanUserResize="False" Width="*" Binding="{Binding DetailNote}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -456,7 +458,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Chi tiết" CanUserResize="False" Width="*" Binding="{Binding Name}">
+                            <DataGridTextColumn Header="Ngày Note" CanUserResize="False" Width="*" Binding="{Binding NoteDate, StringFormat='{}{0:dd/MM/yyyy}'}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -464,7 +466,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Ngày Note" CanUserResize="False" Width="*" Binding="{Binding Remain}">
+                            <DataGridTextColumn Header="Ngày kết thúc" CanUserResize="False" Width="*" Binding="{Binding EndDate, StringFormat='{}{0:dd/MM/yyyy}'}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -472,7 +474,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Ngày kết thúc" CanUserResize="False" Width="*" Binding="{Binding Price}">
+                            <DataGridTextColumn Header="Địa Điểm" CanUserResize="False" Width="100" Binding="{Binding PlaceNote}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -488,11 +490,11 @@
                                             <!--<Button Style="{DynamicResource gridEditButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>-->
-                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                            <!--<Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
                                               Path=DataContext.DeleteStorageCommand}"
                             CommandParameter="{Binding}">
                                                 <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>
+                                            </Button>-->
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

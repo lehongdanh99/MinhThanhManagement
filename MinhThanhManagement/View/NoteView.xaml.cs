@@ -75,23 +75,23 @@ namespace MinhThanhManagement.View
 
         private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            var editedElement = e.EditingElement as TextBox;
-            DataGridRow row = (DataGridRow)DataGridXaml.ItemContainerGenerator.ContainerFromItem(e.Row.Item);
-            int rowIndex = DataGridXaml.ItemContainerGenerator.IndexFromContainer(row);
-            if (editedElement != null)
-            {
-                string type = e.Column.SortMemberPath;
-                var editedValue = editedElement.Text;
-                if (type.Equals("Group"))
-                    GlobalDef.ListStorageModel[rowIndex].Group = editedValue;
-                if (type.Equals("Name"))
-                    GlobalDef.ListStorageModel[rowIndex].Name = editedValue;
-                if (type.Equals("Price"))
-                    GlobalDef.ListStorageModel[rowIndex].Price = Convert.ToDouble(editedValue);
-                if (type.Equals("Remain"))
-                    GlobalDef.ListStorageModel[rowIndex].Remain = editedValue;
-                // Handle the edited value here
-            }
+            //var editedElement = e.EditingElement as TextBox;
+            //DataGridRow row = (DataGridRow)DataGridXaml.ItemContainerGenerator.ContainerFromItem(e.Row.Item);
+            //int rowIndex = DataGridXaml.ItemContainerGenerator.IndexFromContainer(row);
+            //if (editedElement != null)
+            //{
+            //    string type = e.Column.SortMemberPath;
+            //    var editedValue = editedElement.Text;
+            //    if (type.Equals("Group"))
+            //        GlobalDef.ListStorageModel[rowIndex].Group = editedValue;
+            //    if (type.Equals("Name"))
+            //        GlobalDef.ListStorageModel[rowIndex].Name = editedValue;
+            //    if (type.Equals("Price"))
+            //        GlobalDef.ListStorageModel[rowIndex].Price = Convert.ToDouble(editedValue);
+            //    if (type.Equals("Remain"))
+            //        GlobalDef.ListStorageModel[rowIndex].Remain = editedValue;
+            //    // Handle the edited value here
+            //}
         }
 
     }

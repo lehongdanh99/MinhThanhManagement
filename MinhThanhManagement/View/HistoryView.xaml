@@ -360,7 +360,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="Thông tin"  FontSize="20" HorizontalAlignment="Center" Margin="10" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Thông tin"  FontSize="20" HorizontalAlignment="Center" Margin="20" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
             </Grid>
         </Grid>

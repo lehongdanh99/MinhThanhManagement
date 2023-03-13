@@ -18,4 +18,27 @@ namespace MinhThanhManagement.Models
 		}
 
 	}
+
+
+    public class Item
+    {
+
+        private bool isChecked;
+
+        public bool IsChecked
+        {
+            get { return isChecked; }
+            set { isChecked = value; }
+        }
+
+        private string group;
+
+        public string Group
+        {
+            get { return group; }
+            set { group = value; }
+        }
+
+    }
+
 }

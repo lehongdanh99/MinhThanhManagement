@@ -52,7 +52,15 @@ namespace MinhThanhManagement
                     string[] models = line.Split(',');
                     storeModel.IdNote = (Convert.ToInt32(models[0].ToString()));
                     storeModel.NoteDate = (Convert.ToDateTime(models[1]));
-                    storeModel.EndDate = (Convert.ToDateTime(models[2]));
+                    if(!string.IsNullOrEmpty(models[2].ToString()))
+                    {
+                        storeModel.EndDate = (Convert.ToDateTime(models[2]));
+                    }
+                    else
+                    {
+                        storeModel.EndDate = DateTime.MinValue;
+                    }
+                    
                     storeModel.PlaceNote = (models[3].ToString());
                     storeModel.NameNote = (NoteName)Enum.Parse(typeof(NoteName), models[4].ToString()) ;
                     storeModel.DetailNote= (models[5].ToString());                   

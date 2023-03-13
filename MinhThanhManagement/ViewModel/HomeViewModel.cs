@@ -4,7 +4,10 @@ using MinhThanhManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MinhThanhManagement.ViewModel
@@ -34,6 +37,33 @@ namespace MinhThanhManagement.ViewModel
         private int selectedItemStorage;
 
         private StorageModel storageSelected = new StorageModel();
+
+        private string textToFilter = "Tất cả...";
+
+        public string TextToFilter
+        {
+            get { return textToFilter.ToUpper(); }
+            set { textToFilter = value; ListDataStorage.Filter = FilterByName; }
+        }
+
+        private ICollectionView listDataStorage;
+
+        public ICollectionView ListDataStorage
+        {
+            get { return listDataStorage; }
+            set { listDataStorage = value; }
+        }
+
+
+        private List<Item> groupStorage = new List<Item>();
+
+        public List<Item> GroupStorage
+        {
+            get { return groupStorage; }
+            set { groupStorage = value; }
+        }
+
+        private List<string> listGroup = new List<string>();
 
         private string txtNameInput;
 
@@ -119,16 +149,55 @@ namespace MinhThanhManagement.ViewModel
         }
         public void Initialize()
         {
-            //ListStorage = GlobalDef.ListStorageModel;
+            ListStorage = commonMethod.ReadFileCsv();
+            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+
+            GetGroupStorage(ListStorage);
+            //gonext to other screen
             ReloadCommand = new RelayCommand(ReloadStorageCommand);
             SaveCommand = new RelayCommand(SaveStorageCommand);
             DeleteCommand = new RelayCommand(DeleteStorageCommand);
             NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
             NavigateBillCommand = new RelayCommand(NavigateHometoBillCommand);
             NavigateHistoryCommand = new RelayCommand(NavigateHometoHistoryCommand);
-            ListStorage = commonMethod.ReadFileCsv();
+            
             GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
+            
+        }
 
+        private void GetGroupStorage(ObservableCollection<StorageModel> list)
+        {
+
+            var tempList= list.GroupBy(x => x.Group).Select(x => x.FirstOrDefault()).ToList();
+            List<string> listgroup = new List<string>();
+            foreach (var item in tempList)
+            {
+                if (item != null)
+                {
+                    listgroup.Add(item.Group);
+                }
+            }
+            //var listStorage = listgroup.Distinct();
+
+            foreach (var sto in listgroup)
+            {
+                if (sto != null)
+                {
+                    Item itemnew = new Item { IsChecked = false, Group = sto };
+                    GroupStorage.Add(itemnew);
+                }
+            }
+        }
+
+        private bool FilterByName(object obj)
+        {
+            if(!string.IsNullOrEmpty(TextToFilter))
+            {
+                var stoDetail = obj as StorageModel;
+                return stoDetail != null && stoDetail.Group.Contains(TextToFilter);
+
+            }
+            return true;
         }
 
         private void ReloadStorageCommand()
@@ -144,13 +213,11 @@ namespace MinhThanhManagement.ViewModel
         }
         private void NavigateHometoBillCommand()
         {
-            //BillView.GetInstance().InitializeComponent();
             BillView.GetInstance().Show();
         }
 
         private void NavigateHometoHistoryCommand()
         {
-            //BillView.GetInstance().InitializeComponent();
             HistoryView.GetInstance().Show();
         }
         private void SaveStorageCommand()
@@ -197,6 +264,7 @@ namespace MinhThanhManagement.ViewModel
         //    ListStorage.Remove(result);
         //}
     }
+
 
 
 }

@@ -542,6 +542,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
+                        <TextBox  HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
+                        </TextBox>
+
+                        <!--<ComboBox ItemsSource="{Binding GroupStorage}" HorizontalAlignment="Left" Margin="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox IsChecked="{Binding IsChecked}" />
+                                        <TextBlock Text="{Binding Group}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>-->
 
                         <TextBlock Text="QUẢN LÝ KHO" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
 
@@ -567,7 +580,7 @@
                     </Grid>
 
 
-                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
+                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListDataStorage}" AutoGenerateColumns="False"
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow">
                         <DataGrid.Columns>

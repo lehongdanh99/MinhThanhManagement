@@ -11,7 +11,11 @@ namespace MinhThanhManagement.ViewModel
 {
     public class NoteViewModel : INotifyPropertyChanged
     {
-        public NoteViewModel() { }
+
+        CommonMethod commonMethod = new CommonMethod();
+        public NoteViewModel() {
+            ListNotes = commonMethod.ReadNoteFileCsv();
+        }
 
       
         private static NoteViewModel _instance;
@@ -25,7 +29,7 @@ namespace MinhThanhManagement.ViewModel
         }
 
 
-        private ObservableCollection<NotesModel> _notes = new ObservableCollection<NotesModel>();
+        private ObservableCollection<NotesModel> _listNotes = new ObservableCollection<NotesModel>();
         private int notificationCount;
         private DateTime dateStart;
         private DateTime dateEnd;
@@ -48,10 +52,10 @@ namespace MinhThanhManagement.ViewModel
             set { notificationCount = value; }
         }
 
-        public ObservableCollection<NotesModel> Notes
+        public ObservableCollection<NotesModel> ListNotes
         {
-            get { return _notes; }
-            set { _notes = value; }
+            get { return _listNotes; }
+            set { _listNotes = value; }
         }
 
         private string _status;
@@ -79,7 +83,7 @@ namespace MinhThanhManagement.ViewModel
             //}
             if(NewNote != null)
             {
-                Notes.Add(NewNote);
+                ListNotes.Add(NewNote);
             }
             else
             {
@@ -94,13 +98,13 @@ namespace MinhThanhManagement.ViewModel
             string date = "03/21/2023";
             string dummyDate = "03/05/2023";
 
-            Notes.Add(new NotesModel()
+            ListNotes.Add(new NotesModel()
             {
                 EndDate = Convert.ToDateTime(date),
             }); ;
             //
             List<DateTime> notificationCountList = new List<DateTime>();
-            foreach (NotesModel notes in Notes)
+            foreach (NotesModel notes in ListNotes)
             {
                 if(notes.StatusNote == CommonMethod.NoteStatus.NotDone)
                 {
