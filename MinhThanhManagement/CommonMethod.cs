@@ -93,7 +93,7 @@ namespace MinhThanhManagement
                 stringBuilder.Append(item.DetailNote.ToString() + "\n" );
                 stringBuilder.Append(item.StatusNote + "\n" );
             }           
-            if (!File.Exists(filePath))
+            if (!File.Exists(filePath + "MinhThanhNotes.csv"))
             {
                 try
                 {
@@ -108,7 +108,7 @@ namespace MinhThanhManagement
             {
                 filePath += ".csv";
             }
-            File.WriteAllText(filePath, stringBuilder.ToString());
+            File.WriteAllText(filePath + "MinhThanhNotes.csv",  stringBuilder.ToString());
 
             return true;
         }
@@ -124,7 +124,7 @@ namespace MinhThanhManagement
                 stringBuilder.Append(item.Remain.ToString() + ",");
                 stringBuilder.Append(item.Price.ToString() + "\n");
             }
-            if (!File.Exists(filePath))
+            if (!File.Exists(filePath + "MinhThanhManagement.csv"))
             {
                 try
                 {
@@ -139,7 +139,7 @@ namespace MinhThanhManagement
             {
                 filePath += ".csv";
             }
-            File.WriteAllText(filePath, stringBuilder.ToString());
+            File.WriteAllText(filePath + "MinhThanhManagement.csv", stringBuilder.ToString());
 
             return true;
         }

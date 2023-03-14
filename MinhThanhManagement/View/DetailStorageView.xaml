@@ -75,24 +75,24 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Grid.Column="0">
                     <TextBlock  Text="Loại SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>
-                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0"/>
+                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0" Text="{Binding GroupTxt}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <TextBlock  Text="Số lượng" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>
-                    <TextBox Width="100" Height="30" Margin="40, 0 ,10,0"/>
+                    <TextBox Width="100" Height="30" Margin="40, 0 ,10,0" Text="{Binding QuantantyTxt}"/>
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <TextBlock  Text="Tên SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>
-                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0"/>
+                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0" Text="{Binding NameTxt}"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1">
                     <TextBlock  Text="Giá SP" Margin="10,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="SemiBold" FontFamily="13"/>
-                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0"/>
+                    <TextBox Width="100" Height="30" Margin="20, 0 ,10,0" Text="{Binding PriceTxt}"/>
                 </Grid>
 
 
             </Grid>
-            <Button Grid.Row="3" Style="{DynamicResource confirmButton}" Margin="5" Content="Thêm Sản Phẩm"/>
+            <Button Grid.Row="3" Style="{DynamicResource confirmButton}" Margin="5" Content="Thêm Sản Phẩm" Command="{Binding AddItemCommand}"/>
         </Grid>
 
     </Border>
