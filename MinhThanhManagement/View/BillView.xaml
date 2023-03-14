@@ -165,11 +165,22 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center" Text="Hóa đơn"/>
-            <Border CornerRadius="10" Grid.Row="1" Margin="10" BorderBrush="Black" Background="White" BorderThickness="1" Height="auto" Padding="0 0 0 10">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Image Height="120" Width="120" HorizontalAlignment="Left" Margin="20" x:Name="myImage" Source="/Images/logo.jpg" Stretch="Uniform" />
+                <StackPanel Margin="0 10 0 0" HorizontalAlignment="Right">
+                    <TextBlock HorizontalAlignment="Right" FontSize="21"  FontWeight="Bold" Text="CÔNG TY TNHH TM-DV THIẾT KẾ QUẢNG CÁO MINH THANH"/>
+                    <TextBlock HorizontalAlignment="Right" FontSize="20" Text="CN : KIOS 70 LƯƠNG HỮU KHÁNH- P.PHẠM NGŨ LÃO- Q.1-TP.HCM"/>
+                    <TextBlock HorizontalAlignment="Right" FontSize="20" Text="VP : 137/117/6 PHAN ANH, P-BÌNH TRỊ ĐÔNG, Q-BÌNH TÂN-TP.HCM"/>
+                    <TextBlock HorizontalAlignment="Right" FontWeight="Black" FontSize="23.5" Text="ĐT : 028 38334228 DĐ : 0907.015.200 - 0917.278.270"/>
+                    <TextBlock HorizontalAlignment="Right" FontWeight="Black" FontSize="26" Text="Email : thietkequangcaominhthanh@gmail.com"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Grid.Row="1" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center" Text="HÓA ĐƠN BÁN LẺ"/>
+            <Border CornerRadius="10" Grid.Row="2" Margin="10" BorderBrush="Black" Background="White" BorderThickness="1" Height="auto" Padding="0 0 0 10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -205,7 +216,7 @@
                 </Grid>
                 
             </Border>
-            <StackPanel Grid.Row="2"  Margin="5"  Width="auto" Orientation="Horizontal">
+            <StackPanel Grid.Row="3"  Margin="5"  Width="auto" Orientation="Horizontal" x:Name="AddGroupStackpanel">
                 <StackPanel Orientation="Vertical" Margin="5 0">
                     <Label Content="Tên Hàng"/>
                     <controls:AutoCompleteBox Width="200" Background="White" x:Name='ItemNameTxt' ItemsSource="{Binding ListAutoComplete}"  SelectedItem="{Binding SelectedItemAutoComplete, Mode=TwoWay}">
@@ -235,7 +246,7 @@
                 
             </StackPanel>
             <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListStorage}" AutoGenerateColumns="False"
-                              Grid.Row="3" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" 
+                              Grid.Row="4" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" 
                                VerticalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="STT" CanUserResize="False" Width="50" Binding="{Binding Id}">
@@ -305,7 +316,7 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <Grid Grid.Row="4" Width="250" HorizontalAlignment="Right" Margin="10">
+            <Grid Grid.Row="5" Width="250" HorizontalAlignment="Right" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -323,12 +334,12 @@
                 </StackPanel>
                 
             </Grid>
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Width="auto" HorizontalAlignment="Right" Margin="10">
-                <Button Background="Red" Width="150" Margin="5" Click="close_page">
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Width="auto" HorizontalAlignment="Right" Margin="10">
+                <Button x:Name="CancelButton" Background="Red" Width="150" Margin="5" Click="close_page">
                     <TextBlock Text="Hủy"></TextBlock>
                 </Button>
                 <Button Background="Green" Width="150" Click="print">
-                    <TextBlock Text="In Hóa Đơn"></TextBlock>
+                    <Icon:PackIconMaterial Kind="Printer" Style="{StaticResource gridButtonIcon}"/>
                 </Button>
             </StackPanel>
         </Grid>

@@ -461,13 +461,13 @@
             <Grid Grid.Row="1" >
                 
 
-                <Grid Width="500" HorizontalAlignment="Center">
+                <!--<Grid Width="500" HorizontalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                                Panel.ZIndex="1" Text="Tìm kiếm ..." Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <TextBox x:Name="txtSearch" Style="{DynamicResource textboxSearch}"/>
                     <Icon:PackIconMaterial Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6"
                                            HorizontalAlignment="Right"/>
-                </Grid>
+                </Grid>-->
                 <Button Width="40" Height="40" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 0 20 0">
                     <StackPanel>
                         
@@ -542,8 +542,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <TextBox  HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
-                        </TextBox>
+                        <Grid>
+                            <TextBlock Margin=" 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                               Panel.ZIndex="1" Text="Tất cả..." Visibility="{Binding ElementName=TextSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBox x:Name="TextSearch" HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
+                            </TextBox>
+                        </Grid>
+                        
 
                         <!--<ComboBox ItemsSource="{Binding GroupStorage}" HorizontalAlignment="Left" Margin="0">
                             <ComboBox.ItemTemplate>
@@ -570,7 +575,7 @@
                                 <TextBlock Text="Lưu"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource addButton}"  HorizontalAlignment="Right" Margin="0" Click="AddStorageClick">
+                        <Button Style="{StaticResource addButton}"  HorizontalAlignment="Right" Margin="0" Command="{Binding AddCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Thêm Sản Phẩm"/>
@@ -671,16 +676,14 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>-->
-                            <DataGridTemplateColumn Header="Operations" IsReadOnly="False" Width="Auto">
+                            <DataGridTemplateColumn  IsReadOnly="False" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <!--<Button Style="{DynamicResource gridEditButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>-->
-                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
-                                              Path=DataContext.DeleteStorageCommand}"
-                            CommandParameter="{Binding}">
+                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding Delete}">
                                                 <Icon:PackIconMaterial Kind="Delete" Foreground="White" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>
                                         </StackPanel>

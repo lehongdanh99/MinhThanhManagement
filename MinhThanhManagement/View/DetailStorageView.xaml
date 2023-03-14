@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MinhThanhManagement.View"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
+        DataContext="{StaticResource DetailStorageViewModel}"
         Title="DetailStorageView" Background="Transparent" WindowStyle="None" Height="250" Width="400"  WindowStartupLocation="CenterScreen" AllowsTransparency="True">
     <Window.Resources>
         <!--Close and Minimize button-->

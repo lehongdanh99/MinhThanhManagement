@@ -6,5 +6,6 @@
     <viewmodel:BillViewModel x:Key="BillViewModel"></viewmodel:BillViewModel>
     <viewmodel:HistoryViewModel x:Key="HistoryViewModel"></viewmodel:HistoryViewModel>
     <viewmodel:NoteViewModel x:Key="NoteViewModel"></viewmodel:NoteViewModel>
+    <viewmodel:NoteViewModel x:Key="DetailStorageViewModel"></viewmodel:NoteViewModel>
     
 </ResourceDictionary>

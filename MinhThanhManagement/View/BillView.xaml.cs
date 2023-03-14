@@ -56,10 +56,14 @@ namespace MinhThanhManagement.View
         {
             try
             {
+                AddGroupStackpanel.Visibility = Visibility.Collapsed;
+                CancelButton.Visibility = Visibility.Collapsed;
                 PrintDialog printDialog = new PrintDialog();
                 if(printDialog.ShowDialog() == true)
                 {
                     printDialog.PrintVisual(billPage, "Invoice");
+                    MessageBox.Show("ok");
+                    this.Hide();
                 }
 
             }

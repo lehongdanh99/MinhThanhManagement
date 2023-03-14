@@ -38,11 +38,14 @@ namespace MinhThanhManagement.ViewModel
 
         private StorageModel storageSelected = new StorageModel();
 
-        private string textToFilter = "Tất cả...";
+        private string textToFilter = "";
 
         public string TextToFilter
         {
-            get { return textToFilter.ToUpper(); }
+            get 
+            {
+                return textToFilter.ToUpper();
+            }
             set { textToFilter = value; ListDataStorage.Filter = FilterByName; }
         }
 
@@ -154,6 +157,7 @@ namespace MinhThanhManagement.ViewModel
 
             GetGroupStorage(ListStorage);
             //gonext to other screen
+            AddCommand = new RelayCommand(AddStorageCommand);
             ReloadCommand = new RelayCommand(ReloadStorageCommand);
             SaveCommand = new RelayCommand(SaveStorageCommand);
             DeleteCommand = new RelayCommand(DeleteStorageCommand);
@@ -207,6 +211,11 @@ namespace MinhThanhManagement.ViewModel
             ListStorage = commonMethod.ReadFileCsv();
         }
 
+        private void AddStorageCommand()
+        {
+            DetailStorageView.GetInstance().ShowDialog();
+        }
+
         private void NavigateHometoNoteCommand()
         {
             NoteView.GetInstance().Show();                
@@ -225,9 +234,9 @@ namespace MinhThanhManagement.ViewModel
             ListStorage = GlobalDef.ListStorageModel;
             if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath + "MinhThanhManagement.csv"))
             {
-                MessageBox.Show("ok");
+                MessageBox.Show("Lưu thành công!");
             }
-            else MessageBox.Show("Not Ok");
+            else MessageBox.Show("Lưu thất bại lien hệ Danh :(");
         }
         private void DeleteStorageCommand()
         {

@@ -381,20 +381,20 @@
             <Grid Grid.Row="0" >
 
 
-                <Grid Width="500" HorizontalAlignment="Center">
+                <!--<Grid Width="500" HorizontalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                                Panel.ZIndex="1" Text="Tìm kiếm ..." Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <TextBox x:Name="txtSearch" Style="{DynamicResource textboxSearch}"/>
                     <Icon:PackIconMaterial Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6"
                                            HorizontalAlignment="Right"/>
-                </Grid>
+                </Grid>-->
 
                 <!--<Button  Style="{DynamicResource closeButton}" Background="Yellow" HorizontalAlignment="Right" Margin="0 0 40 0" Click="minimizeApp">
                     <StackPanel>
                         <Icon:PackIconMaterial Kind="Minus" Foreground="Black" Width="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>-->
-                <Button  Style="{DynamicResource closeButton}" Background="Red" HorizontalAlignment="Left" Margin="10 0 0 0"  Click="closeApp">
+                <Button  Style="{DynamicResource closeButton}" Background="Red" HorizontalAlignment="Left" Margin="10 10 0 0"  Click="closeApp">
                     <StackPanel>
                         <Icon:PackIconMaterial Kind="ArrowLeft" Foreground="Black" Width="20" VerticalAlignment="Center"/>
                     </StackPanel>
@@ -412,7 +412,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-
+                        <Grid>
+                            <TextBlock Margin=" 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+                               Panel.ZIndex="1" Text="Tất cả..." Visibility="{Binding ElementName=TextSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBox x:Name="TextSearch" HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
+                            </TextBox>
+                        </Grid>
+                        
                         <TextBlock Text="Ghi Chú" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
 
                         <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 250 0" Command="{Binding ReloadCommand}">
@@ -437,7 +443,7 @@
                     </Grid>
 
 
-                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  ItemsSource="{Binding ListNotes}" AutoGenerateColumns="False"
+                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  ItemsSource="{Binding ListDataNote}" AutoGenerateColumns="False"
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
                                VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>

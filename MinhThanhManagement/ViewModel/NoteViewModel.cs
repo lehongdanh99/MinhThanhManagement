@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -15,6 +16,8 @@ namespace MinhThanhManagement.ViewModel
         CommonMethod commonMethod = new CommonMethod();
         public NoteViewModel() {
             ListNotes = commonMethod.ReadNoteFileCsv();
+
+            ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
         }
 
       
@@ -51,6 +54,22 @@ namespace MinhThanhManagement.ViewModel
             get { return notificationCount; }
             set { notificationCount = value; }
         }
+
+        private string textToFilter = "";
+
+        public string TextToFilter
+        {
+            get { return textToFilter.ToUpper(); }
+            set { textToFilter = value; ListDataNote.Filter = FilterByName; }
+        }
+        private ICollectionView listDataNote;
+
+        public ICollectionView ListDataNote
+        {
+            get { return listDataNote; }
+            set { listDataNote = value; }
+        }
+
 
         public ObservableCollection<NotesModel> ListNotes
         {
@@ -122,6 +141,17 @@ namespace MinhThanhManagement.ViewModel
                 }
             }
             return NotificationCount;
+        }
+
+        private bool FilterByName(object obj)
+        {
+            if (!string.IsNullOrEmpty(TextToFilter))
+            {
+                var noteDetail = obj as NotesModel;
+                return noteDetail != null && noteDetail.DetailNote.Contains(TextToFilter);
+
+            }
+            return true;
         }
 
         private NotesModel _newNote;

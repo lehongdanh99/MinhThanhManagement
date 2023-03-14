@@ -19,6 +19,16 @@ namespace MinhThanhManagement.View
     /// </summary>
     public partial class DetailStorageView : Window
     {
+        private static DetailStorageView _instance;
+        public static DetailStorageView GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new DetailStorageView();
+            }
+            return _instance;
+        }
+
         public DetailStorageView()
         {
             InitializeComponent();

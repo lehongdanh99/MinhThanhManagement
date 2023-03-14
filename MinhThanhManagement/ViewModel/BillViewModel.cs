@@ -12,6 +12,13 @@ namespace MinhThanhManagement.ViewModel
 {
     public class BillViewModel : BaseViewModel
     {
+        private string imageSource = "logo.JPG";
+
+        public string ImageSource
+        {
+            get { return imageSource; }
+            set { imageSource = value; }
+        }
 
         private List<string> itemNameTxt;
 
