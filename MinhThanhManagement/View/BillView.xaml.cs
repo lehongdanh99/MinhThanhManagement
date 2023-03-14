@@ -58,6 +58,7 @@ namespace MinhThanhManagement.View
             {
                 AddGroupStackpanel.Visibility = Visibility.Collapsed;
                 CancelButton.Visibility = Visibility.Collapsed;
+                dataGridTempDelete.Visibility = Visibility.Collapsed;
                 PrintDialog printDialog = new PrintDialog();
                 if(printDialog.ShowDialog() == true)
                 {

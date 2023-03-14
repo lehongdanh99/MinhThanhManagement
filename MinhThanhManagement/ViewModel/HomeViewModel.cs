@@ -206,8 +206,6 @@ namespace MinhThanhManagement.ViewModel
 
         private void ReloadStorageCommand()
         {
-
-            GlobalDef.ListStorageModel[0].Name.ToString();
             ListStorage = commonMethod.ReadFileCsv();
         }
 
