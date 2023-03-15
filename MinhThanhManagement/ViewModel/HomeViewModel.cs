@@ -232,7 +232,7 @@ namespace MinhThanhManagement.ViewModel
         }
         private void SaveStorageCommand()
         {
-            ListStorage = GlobalDef.ListStorageModel;
+            //ListStorage = GlobalDef.ListStorageModel;
             if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath + "MinhThanhManagement.csv"))
             {
                 MessageBox.Show("Lưu thành công!");
@@ -241,39 +241,28 @@ namespace MinhThanhManagement.ViewModel
         }
         private void DeleteStorageCommand()
         {
-            foreach (var item in ListStorage)
+            List<int> ListIDCheck = new List<int>();
+            foreach (var item in ListStorage.ToList())
             {
-                if (item.Id - 1 == SelectedItemStorage)
+                if (item.IsCheck)
                 {
-                    GlobalDef.ListStorageModel.RemoveAt(SelectedItemStorage);
-                    MessageBox.Show("Lưu thành công!");
+                    //ListIDCheck.Add(item.Id);
+                    ListStorage.Remove(item);
                 }
             }
-            ListStorage = GlobalDef.ListStorageModel;
+
+            if (GlobalDef.ListStorageModel.Count != ListStorage.Count)
+            {
+                MessageBox.Show("Xóa thành công!");
+            }
+            //ListStorage = GlobalDef.ListStorageModel;
+            OnPropertyChanged(nameof(ListStorage));
+            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+            OnPropertyChanged(nameof(ListDataStorage));
+            
+            
         }
 
-        //private bool CanDelete
-        //{
-        //    get { return ListStorage[SelectedItemStorage] != null; }
-        //}
-
-        //private ICommand m_deleteCommand;
-        //public ICommand DeleteCommand
-        //{
-        //    get
-        //    {
-        //        if (m_deleteCommand == null)
-        //        {
-        //            m_deleteCommand = new RelayCommand(param => Delete((Result)param), param => CanDelete);
-        //        }
-        //        return m_deleteCommand;
-        //    }
-        //}
-
-        //private void Delete(StorageModel result)
-        //{
-        //    ListStorage.Remove(result);
-        //}
     }
 
 

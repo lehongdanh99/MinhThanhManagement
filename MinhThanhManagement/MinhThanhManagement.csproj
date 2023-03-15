@@ -92,12 +92,16 @@
     <Compile Include="Models\NotesModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
+    <Compile Include="ViewModel\DetailNoteViewModel.cs" />
     <Compile Include="ViewModel\DetailStorageViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
     <Compile Include="View\BillView.xaml.cs">
       <DependentUpon>BillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailNoteView.xaml.cs">
+      <DependentUpon>DetailNoteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DetailStorageView.xaml.cs">
       <DependentUpon>DetailStorageView.xaml</DependentUpon>
@@ -132,6 +136,10 @@
     <Page Include="View\BillView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DetailNoteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DetailStorageView.xaml">
       <SubType>Designer</SubType>

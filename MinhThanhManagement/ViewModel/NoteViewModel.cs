@@ -1,4 +1,5 @@
-﻿using MinhThanhManagement.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using MinhThanhManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,17 +7,32 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace MinhThanhManagement.ViewModel
 {
     public class NoteViewModel : INotifyPropertyChanged
     {
+        public ICommand SaveNoteCommand { get; private set; }
+
+        public ICommand DeleteNoteCommand { get; private set; }
+
+        public ICommand ReloadNoteCommand { get; private set; }
+
+        public ICommand AddNoteCommand { get; private set; }
 
         CommonMethod commonMethod = new CommonMethod();
         public NoteViewModel() {
-            ListNotes = commonMethod.ReadNoteFileCsv();
 
+            AddNoteCommand = new RelayCommand(AddNote);
+            ReloadNoteCommand = new RelayCommand(ReloadNote);
+            SaveNoteCommand = new RelayCommand(SaveNote);
+            DeleteNoteCommand = new RelayCommand(DeleteNote);
+
+            ListNotes = commonMethod.ReadNoteFileCsv();
+            GlobalDef.ListNotesModel = commonMethod.ReadNoteFileCsv();
             ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
         }
 
@@ -152,6 +168,42 @@ namespace MinhThanhManagement.ViewModel
 
             }
             return true;
+        }
+
+        private void DeleteNote()
+        {
+            foreach (var item in ListNotes.ToList())
+            {
+                if (item.IsCheck)
+                {
+                    //ListIDCheck.Add(item.Id);
+                    ListNotes.Remove(item);
+                }
+            }
+
+            if (GlobalDef.ListNotesModel.Count != ListNotes.Count)
+            {
+                MessageBox.Show("Xóa thành công!");
+                GlobalDef.ListNotesModel = ListNotes;
+            }
+            ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+
+        }
+
+        private void ReloadNote()
+        {
+            ListNotes = commonMethod.ReadNoteFileCsv();
+            ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+        }
+
+        private void SaveNote()
+        {
+            //ListStorage = GlobalDef.ListStorageModel;
+            if (commonMethod.WriteNoteFileCsv(ListNotes, GlobalDef.CsvPath + "MinhThanhNotes.csv"))
+            {
+                MessageBox.Show("Lưu thành công!");
+            }
+            else MessageBox.Show("Lưu thất bại lien hệ Danh :(");
         }
 
         private NotesModel _newNote;

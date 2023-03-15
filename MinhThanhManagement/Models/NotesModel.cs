@@ -16,6 +16,7 @@ namespace MinhThanhManagement.Models
 		private NoteName nameNote;
 		private string detailNote;
 		private NoteStatus statusNote;
+		private bool isCheck;
 
 		public NoteStatus StatusNote
         {
@@ -59,5 +60,10 @@ namespace MinhThanhManagement.Models
 			set { idNote = value; }
 		}
 
-	}
+        public bool IsCheck
+        {
+            get { return isCheck; }
+            set { isCheck = value; }
+        }
+    }
 }

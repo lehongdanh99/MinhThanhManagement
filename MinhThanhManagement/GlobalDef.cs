@@ -12,6 +12,6 @@ namespace MinhThanhManagement
     {
         public static string CsvPath = AppDomain.CurrentDomain.BaseDirectory;
         public static ObservableCollection<StorageModel> ListStorageModel = new ObservableCollection<StorageModel>();
-
+        public static ObservableCollection<NotesModel> ListNotesModel = new ObservableCollection<NotesModel>();
     }
 }

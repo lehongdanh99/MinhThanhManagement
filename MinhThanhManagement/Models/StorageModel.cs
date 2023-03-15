@@ -50,6 +50,15 @@ namespace MinhThanhManagement.Models
             set { price = value; }
         }
 
+        private bool isCheck = false;
+
+        public bool IsCheck
+        {
+            get { return isCheck; }
+            set { isCheck  = value; }
+        }
+
+
     }
 
 }

@@ -562,14 +562,19 @@
                         </ComboBox>-->
 
                         <TextBlock Text="QUẢN LÝ KHO" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
-
-                        <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 250 0" Command="{Binding ReloadCommand}">
+                        <Button Style="{StaticResource reloadButton}" Background="Red" HorizontalAlignment="Right" Width="80" Margin="0 0 160 0" Command="{Binding DeleteCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Reload" Foreground="Black" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                                <TextBlock Text="Xóa" Foreground="Black"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 340 0" Command="{Binding ReloadCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Reload" Foreground="Black" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Cập nhật" Foreground="Black"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource gridEditButton}"  HorizontalAlignment="Right" Height="35" Width="80" Margin="0 0 160 0" Command="{Binding SaveCommand}">
+                        <Button Style="{StaticResource gridEditButton}"  HorizontalAlignment="Right" Height="35" Width="80" Margin="0 0 250 0" Command="{Binding SaveCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Lưu"/>
@@ -587,7 +592,7 @@
 
                     <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListDataStorage}" AutoGenerateColumns="False"
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
-                               VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow">
+                               VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow" CanUserDeleteRows="{Binding UserCanDelete}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">
                                 <DataGridTextColumn.CellStyle>
@@ -633,14 +638,14 @@
                             <DataGridTemplateColumn  IsReadOnly="False" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
+                                        
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <!--<Button Style="{DynamicResource gridEditButton}">
-                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>-->
-                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" 
+                                            <CheckBox IsChecked="{Binding IsCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            
+                                            <!--<Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" 
                                                     Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
                                                 <Icon:PackIconMaterial Kind="Delete" Foreground="White" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>
+                                            </Button>-->
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

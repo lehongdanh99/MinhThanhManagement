@@ -420,20 +420,25 @@
                         </Grid>
                         
                         <TextBlock Text="Ghi Chú" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
-
-                        <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 250 0" Command="{Binding ReloadCommand}">
+                        <Button Style="{StaticResource reloadButton}" Background="Red" HorizontalAlignment="Right" Width="80" Margin="0 0 160 0" Command="{Binding DeleteNoteCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Reload" Foreground="Black" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                                <TextBlock Text="Xóa" Foreground="Black"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource reloadButton}"  HorizontalAlignment="Right" Width="100" Margin="0 0 340 0" Command="{Binding ReloadNoteCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Reload" Foreground="Black" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Cập nhật" Foreground="Black"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource gridEditButton}"  HorizontalAlignment="Right" Height="35" Width="80" Margin="0 0 160 0" Command="{Binding SaveCommand}">
+                        <Button Style="{StaticResource gridEditButton}"  HorizontalAlignment="Right" Height="35" Width="80" Margin="0 0 250 0" Command="{Binding SaveNoteCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Lưu"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource addButton}"  HorizontalAlignment="Right" Margin="0" Click="AddStorageClick">
+                        <Button Style="{StaticResource addButton}"  HorizontalAlignment="Right" Margin="0" Command="{Binding AddNoteCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                                 <TextBlock Text="Thêm Ghi Chú"/>
@@ -489,7 +494,7 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTemplateColumn Header="Trạng thái" IsReadOnly="False" Width="*">
+                            <DataGridTemplateColumn Header="Trạng thái" IsReadOnly="False" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -500,6 +505,19 @@
                                               Path=DataContext.DeleteStorageCommand}"
                             CommandParameter="{Binding}">
                                                 <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>-->
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Xóa" IsReadOnly="False" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <CheckBox IsChecked="{Binding IsCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <!--<Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" 
+                                                    Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                                                <Icon:PackIconMaterial Kind="Delete" Foreground="White" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>-->
                                         </StackPanel>
                                     </DataTemplate>

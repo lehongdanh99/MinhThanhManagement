@@ -49,7 +49,7 @@ namespace MinhThanhManagement.View
         {
             try
             {
-                Close();
+                this.Close();
             }
             catch (Exception ex)
             {
