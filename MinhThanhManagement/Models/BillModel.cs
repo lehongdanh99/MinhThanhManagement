@@ -41,4 +41,60 @@ namespace MinhThanhManagement.Models
 
     }
 
+
+    public class ItemInBill
+    {
+
+        private string itemName;
+
+        public string ItemName
+        {
+            get { return itemName; }
+            set { itemName = value; }
+        }
+
+        private string unit;
+
+        public string Unit
+        {
+            get { return unit; }
+            set { unit = value; }
+        }
+
+        private int count;
+
+        public int Count
+        {
+            get { return count; }
+            set { count = value; }
+        }
+
+        private double price;
+
+        public double Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+
+        private double priceFinal;
+
+        public double PriceFinal
+        {
+            get { return priceFinal; }
+            set { priceFinal = value; }
+        }
+
+        public ItemInBill(string ItemName, string Unit, int Count, double Price, double PriceFinal)
+        {
+            this.ItemName = ItemName;
+            this.Unit = Unit;
+            this.Count = Count;
+            this.Price = Price;
+            this.PriceFinal = PriceFinal;
+        }
+
+
+    }
+
 }
