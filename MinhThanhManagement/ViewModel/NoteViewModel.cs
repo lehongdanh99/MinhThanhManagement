@@ -199,7 +199,7 @@ namespace MinhThanhManagement.ViewModel
         private void SaveNote()
         {
             //ListStorage = GlobalDef.ListStorageModel;
-            if (commonMethod.WriteNoteFileCsv(ListNotes, GlobalDef.CsvPath + "MinhThanhNotes.csv"))
+            if (commonMethod.WriteNoteFileCsv(ListNotes, GlobalDef.CsvPath))
             {
                 MessageBox.Show("Lưu thành công!");
             }

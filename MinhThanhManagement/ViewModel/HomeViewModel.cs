@@ -233,7 +233,7 @@ namespace MinhThanhManagement.ViewModel
         private void SaveStorageCommand()
         {
             //ListStorage = GlobalDef.ListStorageModel;
-            if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath + "MinhThanhManagement.csv"))
+            if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath))
             {
                 MessageBox.Show("Lưu thành công!");
             }
