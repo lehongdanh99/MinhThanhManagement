@@ -629,53 +629,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <!--<DataGridTemplateColumn Header="Loại Sản Phẩm" IsReadOnly="False" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                            <TextBox Text="{Binding Group}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center"  Margin="0 0 0 1" />
-                                            
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Tên Sản Phẩm" IsReadOnly="False" CanUserResize="False" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                            <TextBox Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
-                                                     />
-                                            
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Số Lượng Còn Lại" IsReadOnly="False" CanUserResize="False" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                            <TextBox Text="{Binding Remain}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
-                                                     PreviewTextInput="TextBox_PreviewTextInput"/>
-                                            
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Giá Sản Phẩm" IsReadOnly="False" CanUserResize="False" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                            <TextBox Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Center" TextDecorations="None" Width="100" HorizontalContentAlignment="Center" Margin="0 0 0 1"
-                                                     PreviewTextInput="TextBox_PreviewTextInput"/>
-                                            
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>-->
+                            
                             <DataGridTemplateColumn  IsReadOnly="False" Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -683,7 +637,8 @@
                                             <!--<Button Style="{DynamicResource gridEditButton}">
                                                 <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>-->
-                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding Delete}">
+                                            <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" 
+                                                    Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
                                                 <Icon:PackIconMaterial Kind="Delete" Foreground="White" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>
                                         </StackPanel>

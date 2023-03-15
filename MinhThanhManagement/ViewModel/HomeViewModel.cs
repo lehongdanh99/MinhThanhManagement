@@ -207,6 +207,9 @@ namespace MinhThanhManagement.ViewModel
         private void ReloadStorageCommand()
         {
             ListStorage = commonMethod.ReadFileCsv();
+            OnPropertyChanged(nameof(ListStorage));
+            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+            OnPropertyChanged(nameof(ListDataStorage));
         }
 
         private void AddStorageCommand()
@@ -243,6 +246,7 @@ namespace MinhThanhManagement.ViewModel
                 if (item.Id - 1 == SelectedItemStorage)
                 {
                     GlobalDef.ListStorageModel.RemoveAt(SelectedItemStorage);
+                    MessageBox.Show("Lưu thành công!");
                 }
             }
             ListStorage = GlobalDef.ListStorageModel;
