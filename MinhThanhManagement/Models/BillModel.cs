@@ -85,6 +85,14 @@ namespace MinhThanhManagement.Models
             set { priceFinal = value; }
         }
 
+        private bool isCheck;
+
+        public bool IsCheck
+        {
+            get { return isCheck; }
+            set { isCheck = value; }
+        }
+
         public ItemInBill(string ItemName, string Unit, int Count, double Price, double PriceFinal)
         {
             this.ItemName = ItemName;

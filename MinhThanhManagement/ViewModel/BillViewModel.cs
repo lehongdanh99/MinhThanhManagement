@@ -8,13 +8,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MinhThanhManagement.ViewModel 
 {
     public class BillViewModel : BaseViewModel
     {
-
+        public ICommand DeleteItemToBillCommand { get; private set; }
         public ICommand AddItemtoBill { get; private set; }
 
 
@@ -51,7 +53,7 @@ namespace MinhThanhManagement.ViewModel
             set { count = value; 
                 PriceAutoCount = Count * PriceAuto;
                 OnPropertyChanged(nameof(PriceAutoCount));
-                
+                OnPropertyChanged(nameof(Count));
             }
         }
 
@@ -138,7 +140,7 @@ namespace MinhThanhManagement.ViewModel
                 ListAutoComplete.Add(item.Group + " " + item.Name);
             }
 
-
+            DeleteItemToBillCommand = new RelayCommand(DeleteItem);
             //add item to list bill
             AddItemtoBill = new RelayCommand(AddBillCommand);
         }
@@ -170,6 +172,20 @@ namespace MinhThanhManagement.ViewModel
 
 
             GetTotal(ListItemsBill);
+        }
+
+        private void DeleteItem()
+        {
+            foreach (var item in ListItemsBill.ToList())
+            {
+                if (item.IsCheck)
+                {
+                    //ListIDCheck.Add(item.Id);
+                    ListItemsBill.Remove(item);
+                }
+            }
+            OnPropertyChanged(nameof(ListItemsBill));
+
         }
 
         private void GetTotal(ObservableCollection<ItemInBill> listBill)

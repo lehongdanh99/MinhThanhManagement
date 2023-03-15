@@ -51,8 +51,8 @@
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Margin" Value="0 4 0 0"/>
-            <Setter Property="Height" Value="70"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
             <Setter Property="ValidationErrorTemplate">
@@ -154,8 +154,8 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0 5 0 0"/>
         </Style>
     </Window.Resources>
     <Border Background="#eff2f7" CornerRadius="20">
@@ -241,13 +241,19 @@
                     <Label Content="Thành tiền"/>
                     <TextBox Width="150" Text="{Binding PriceAutoCount}" Background="White"></TextBox>
                 </StackPanel>
-                <Button Margin="5" Width="50" Command="{Binding AddItemtoBill}">
-                    <Icon:PackIconMaterial Kind="TableRowPlusAfter" Style="{StaticResource gridButtonIcon}"/>
-                </Button>
+                <StackPanel>
+                    <Button Margin="5" Height="20" Width="50" Command="{Binding AddItemtoBill}" Background="Green">
+                        <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource gridButtonIcon}" Width="20" Height="10"/>
+                    </Button>
+                    <Button Margin="0" Height="20" Width="50" Command="{Binding DeleteItemToBillCommand}" Background="Red">
+                        <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}" Width="20" Height="10" />
+                    </Button>
+                </StackPanel>
+                
                 
             </StackPanel>
-            <DataGrid Height="200" RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListItemsBill}" AutoGenerateColumns="False"
-                              Grid.Row="4" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" 
+            <DataGrid Height="auto" x:Name="DataGridXaml" ItemsSource="{Binding ListItemsBill}" AutoGenerateColumns="False"
+                              Grid.Row="4" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="True" 
                                VerticalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
                     
@@ -295,14 +301,12 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <!--<Button Style="{DynamicResource gridEditButton}">
-                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>-->
-                                    <Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                    <CheckBox Height="12" IsChecked="{Binding IsCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <!--<Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
                                               Path=DataContext.DeleteStorageCommand}"
                             CommandParameter="{Binding}">
                                         <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
+                                    </Button>-->
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
