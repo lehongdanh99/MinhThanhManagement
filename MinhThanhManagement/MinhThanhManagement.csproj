@@ -90,10 +90,13 @@
     </ApplicationDefinition>
     <Compile Include="Models\BillModel.cs" />
     <Compile Include="Models\NotesModel.cs" />
+    <Compile Include="noteEnum.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\DetailNoteViewModel.cs" />
     <Compile Include="ViewModel\DetailStorageViewModel.cs" />
+    <Compile Include="ViewModel\EnumStatusNoteToStringConverter.cs" />
+    <Compile Include="ViewModel\EnumToStringConverter.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />

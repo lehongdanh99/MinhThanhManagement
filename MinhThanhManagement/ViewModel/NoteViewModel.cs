@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using static MinhThanhManagement.CommonMethod;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -22,6 +23,7 @@ namespace MinhThanhManagement.ViewModel
         public ICommand ReloadNoteCommand { get; private set; }
 
         public ICommand AddNoteCommand { get; private set; }
+
 
         CommonMethod commonMethod = new CommonMethod();
         public NoteViewModel() {
@@ -36,7 +38,7 @@ namespace MinhThanhManagement.ViewModel
             ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
         }
 
-      
+
         private static NoteViewModel _instance;
         public static NoteViewModel GetInstance()
         {
@@ -107,6 +109,15 @@ namespace MinhThanhManagement.ViewModel
             get { return test; }
             set { test = value; }
         }
+
+        private noteEnum statusNoteSelectedItem;
+
+        public noteEnum StatusNoteSelectedItem
+        {
+            get { return statusNoteSelectedItem; }
+            set { statusNoteSelectedItem = value; }
+        }
+
 
         public void AddNote()
         {
