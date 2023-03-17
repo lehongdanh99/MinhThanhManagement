@@ -56,16 +56,27 @@ namespace MinhThanhManagement.View
         {
             try
             {
-                AddGroupStackpanel.Visibility = Visibility.Collapsed;
-                CancelButton.Visibility = Visibility.Collapsed;
-                dataGridTempDelete.Visibility = Visibility.Collapsed;
-                PrintDialog printDialog = new PrintDialog();
-                if(printDialog.ShowDialog() == true)
+                if(!string.IsNullOrEmpty(TxtName.ToString()) 
+                    || !string.IsNullOrEmpty(TxtCompany.ToString())
+                    || !string.IsNullOrEmpty(TxtAddress.ToString())
+                    || !string.IsNullOrEmpty(TxtPhone.ToString()))
                 {
-                    printDialog.PrintVisual(billPage, "Invoice");
-                    MessageBox.Show("ok");
-                    this.Hide();
+                    AddGroupStackpanel.Visibility = Visibility.Collapsed;
+                    CancelButton.Visibility = Visibility.Collapsed;
+                    dataGridTempDelete.Visibility = Visibility.Collapsed;
+                    PrintDialog printDialog = new PrintDialog();
+                    if (printDialog.ShowDialog() == true)
+                    {
+                        printDialog.PrintVisual(billPage, "Invoice");
+                        MessageBox.Show("Đã xuất file PDF");
+                        this.Hide();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng");
+                }
+                
 
             }
             catch (Exception ex)

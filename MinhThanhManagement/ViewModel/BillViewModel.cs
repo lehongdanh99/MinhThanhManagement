@@ -131,6 +131,37 @@ namespace MinhThanhManagement.ViewModel
             }
         }
 
+        private string custumerName;
+
+        public string CustumerName
+        {
+            get { return custumerName; }
+            set { custumerName = value; }
+        }
+
+        private string company;
+
+        public string Company
+        {
+            get { return company; }
+            set { company = value; }
+        }
+
+        private string address;
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+
+        private int phoneNum;
+
+        public int PhoneNum
+        {
+            get { return phoneNum; }
+            set { phoneNum = value; }
+        }
 
 
         //List<string> items = new List<string>();

@@ -4,9 +4,9 @@
                     >
     <viewmodel:HomeViewModel x:Key="HomeViewModel"></viewmodel:HomeViewModel>
     <viewmodel:BillViewModel x:Key="BillViewModel"></viewmodel:BillViewModel>
-    <viewmodel:HistoryViewModel x:Key="HistoryViewModel"></viewmodel:HistoryViewModel>
     <viewmodel:NoteViewModel x:Key="NoteViewModel"></viewmodel:NoteViewModel>
     <viewmodel:DetailStorageViewModel x:Key="DetailStorageViewModel"></viewmodel:DetailStorageViewModel>
     <viewmodel:DetailNoteViewModel x:Key="DetailNoteViewModel"></viewmodel:DetailNoteViewModel>
+    <viewmodel:HistoryViewModel x:Key="HistoryViewModel"></viewmodel:HistoryViewModel>
     
 </ResourceDictionary>

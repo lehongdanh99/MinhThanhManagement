@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinhThanhManagement.View"
         mc:Ignorable="d"
-        
+        DataContext="{StaticResource HistoryViewModel}"
         xml:lang="vi-VN"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
 
         Title="HistoryView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
@@ -346,7 +345,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel>
+                <StackPanel Grid.Column="0">
                     <Button  Style="{DynamicResource closeButton}" Background="Red" HorizontalAlignment="Left" Margin="10 10 0 0"  Click="closeApp">
                         <StackPanel>
                             <Icon:PackIconMaterial Kind="ArrowLeft" Foreground="Black" Width="20" VerticalAlignment="Center"/>
@@ -359,8 +358,14 @@
                             Width="513" Height="567" />
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="Thông tin"  FontSize="20" HorizontalAlignment="Center" Margin="20" FontWeight="Bold" Foreground="White"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Thông tin hóa đơn"  FontSize="20" HorizontalAlignment="Center" Margin="20" FontWeight="Bold" Foreground="White"/>
+                       
+                    <DataGrid ItemsSource="{Binding ListFile}" Background="White" Width="auto" Height="auto">
+                        
+                    </DataGrid>
+                    
+                    <Button Background="Red"/>
                 </StackPanel>
             </Grid>
         </Grid>

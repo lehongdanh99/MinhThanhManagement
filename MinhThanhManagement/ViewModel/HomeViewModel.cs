@@ -228,6 +228,7 @@ namespace MinhThanhManagement.ViewModel
 
         private void NavigateHometoHistoryCommand()
         {
+            HistoryViewModel.GetInstance().ReadFileinFolder();
             HistoryView.GetInstance().Show();
         }
         private void SaveStorageCommand()
