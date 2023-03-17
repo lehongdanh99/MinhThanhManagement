@@ -369,7 +369,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Border CornerRadius="20" Background="White">
+    <Border CornerRadius="20" Background="LightCyan">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -449,7 +449,7 @@
 
 
                     <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"  ItemsSource="{Binding ListDataNote}" AutoGenerateColumns="False"
-                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
+                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
                             

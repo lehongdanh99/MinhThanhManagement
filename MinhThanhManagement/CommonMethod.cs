@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -59,8 +60,7 @@ namespace MinhThanhManagement
                     else
                     {
                         storeModel.EndDate = DateTime.MinValue;
-                    }
-                    
+                    }                   
                     storeModel.PlaceNote = (models[3].ToString());
                     storeModel.NameNote = (NoteName)Enum.Parse(typeof(NoteName), models[4].ToString()) ;
                     storeModel.DetailNote= (models[5].ToString());                   
@@ -86,11 +86,11 @@ namespace MinhThanhManagement
             foreach(NotesModel item in newList)
             {
                 stringBuilder.Append(item.IdNote + ",");
-                stringBuilder.Append(item.NoteDate + ",");
-                stringBuilder.Append(item.EndDate + ",");
+                stringBuilder.Append(item.NoteDate.ToShortTimeString() + ",");
+                stringBuilder.Append(item.EndDate.ToShortTimeString() + ",");
                 stringBuilder.Append(item.PlaceNote.ToString() + ",");
-                stringBuilder.Append(item.NameNote + "\n" );
-                stringBuilder.Append(item.DetailNote.ToString() + "\n" );
+                stringBuilder.Append(item.NameNote + "," );
+                stringBuilder.Append(item.DetailNote.ToString() + "," );
                 stringBuilder.Append(item.StatusNote + "\n" );
             }           
             if (!File.Exists(filePath + "MinhThanhNotes.csv"))
@@ -101,15 +101,22 @@ namespace MinhThanhManagement
                 }
                 catch (Exception e)
                 {
+                    MessageBox.Show(e.Message, "Lỗi ghi file", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }
-            if (!filePath.Contains(".csv"))
+            else
             {
-                filePath += ".csv";
+                try
+                {
+                    File.WriteAllText(filePath + "MinhThanhNotes.csv", stringBuilder.ToString());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Lỗi ghi file", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
             }
-            File.WriteAllText(filePath + "MinhThanhNotes.csv",  stringBuilder.ToString());
-
             return true;
         }
         public bool WriteFileCsv(ObservableCollection<StorageModel> listItem, string filePath)
@@ -132,15 +139,22 @@ namespace MinhThanhManagement
                 }
                 catch (Exception e)
                 {
+                    MessageBox.Show(e.Message, "Lỗi ghi file", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }
-            if (!filePath.Contains(".csv"))
+            else
             {
-                filePath += ".csv";
+                try
+                {
+                    File.WriteAllText(filePath + "MinhThanhManagement.csv", stringBuilder.ToString());
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Lỗi ghi file", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
             }
-            File.WriteAllText(filePath + "MinhThanhManagement.csv", stringBuilder.ToString());
-
             return true;
         }
 

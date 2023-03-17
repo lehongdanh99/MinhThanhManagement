@@ -398,7 +398,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Border CornerRadius="20" Background="#eff2f7" >
+    <Border CornerRadius="20" Background="LightCyan" >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
@@ -458,7 +458,7 @@
             </Border>
             
             <!--Filter-->
-            <Grid Grid.Row="1" >
+            <Grid Grid.Row="1"  >
                 
 
                 <!--<Grid Width="500" HorizontalAlignment="Center">
@@ -590,7 +590,7 @@
                     </Grid>
 
 
-                    <DataGrid  RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListDataStorage}" AutoGenerateColumns="False"
+                    <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListDataStorage}" AutoGenerateColumns="False"
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow" CanUserDeleteRows="{Binding UserCanDelete}">
                         <DataGrid.Columns>

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using MinhThanhManagement.Models;
+using MinhThanhManagement.View;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -94,6 +95,7 @@ namespace MinhThanhManagement.ViewModel
                 if(!commonMethod.WriteFileCsv(GlobalDef.ListStorageModel, GlobalDef.CsvPath))
                 {
                     MessageBox.Show("Ghi file thất bại", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }

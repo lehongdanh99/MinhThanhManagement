@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Helpers;
 using MinhThanhManagement.Models;
+using MinhThanhManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +15,7 @@ using System.Windows.Input;
 
 namespace MinhThanhManagement.ViewModel
 {
-    public class NoteViewModel : INotifyPropertyChanged
+    public class NoteViewModel : BaseViewModel
     {
         public ICommand SaveNoteCommand { get; private set; }
 
@@ -32,6 +34,15 @@ namespace MinhThanhManagement.ViewModel
             DeleteNoteCommand = new RelayCommand(DeleteNote);
 
             ListNotes = commonMethod.ReadNoteFileCsv();
+            foreach (var item in ListNotes)
+            {
+                switch (item.NameNote)
+                {
+                    case CommonMethod.NoteName.ToDo:
+                        
+                        break;
+                }
+            }
             GlobalDef.ListNotesModel = commonMethod.ReadNoteFileCsv();
             ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
         }
@@ -110,20 +121,7 @@ namespace MinhThanhManagement.ViewModel
 
         public void AddNote()
         {
-            //if (!string.IsNullOrWhiteSpace(NewNote))
-            //{
-            //    Notes.Add(NewNote);
-            //    NewNote = string.Empty;
-            //    Status = "Note added.";
-            //}
-            if(NewNote != null)
-            {
-                ListNotes.Add(NewNote);
-            }
-            else
-            {
-                Status = "Please enter a note.";
-            }
+            DetailNoteView.GetInstance().ShowDialog();
         }
 
         //Count the tasks need to be done to show on HomeViewModel notification
@@ -192,8 +190,10 @@ namespace MinhThanhManagement.ViewModel
 
         private void ReloadNote()
         {
-            ListNotes = commonMethod.ReadNoteFileCsv();
+            ListNotes = commonMethod.ReadNoteFileCsv();           
             ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+            OnPropertyChanged(nameof(ListNotes));
+            OnPropertyChanged(nameof(ListDataNote));
         }
 
         private void SaveNote()
