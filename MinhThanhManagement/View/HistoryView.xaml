@@ -329,7 +329,7 @@
         <Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -341,7 +341,7 @@
             <!--Grid controls-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -355,17 +355,35 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 10 0 50">
                         <TextBlock Text="Lịch" FontSize="20" HorizontalAlignment="Center" Margin="0 0 0 10" FontWeight="Bold" Foreground="DodgerBlue"/>
                         <Calendar FontSize="50" CalendarDayButtonStyle="{DynamicResource calendarDaybutton}"  CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}"
-                            Width="513" Height="567" />
+                            Width="513" Height="567" SelectedDate="{Binding SelectedDate}"  />
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical">
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
                     <TextBlock Text="Thông tin hóa đơn"  FontSize="20" HorizontalAlignment="Center" Margin="20" FontWeight="Bold" Foreground="White"/>
-                       
-                    <DataGrid ItemsSource="{Binding ListFile}" Background="White" Width="auto" Height="auto">
-                        
-                    </DataGrid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Số lượng đơn" Margin="10 0 0 0" Foreground="White" FontWeight="Bold" FontSize="15"></TextBlock>
+                        <TextBlock Text="{Binding BillCount}" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="White" FontSize="17" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
                     
-                    <Button Background="Red"/>
+                    <Border CornerRadius="10" Background="White" Margin="10">
+                        <ListView ItemsSource="{Binding ListFile}" Background="White" Width="auto" Height="auto">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="auto">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="400"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}" Margin="5" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding CreationTime,  StringFormat='hh:mm:ss tt'}" Grid.Column="1"
+                                                   Margin="5" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Border>
+                    
                 </StackPanel>
             </Grid>
         </Grid>

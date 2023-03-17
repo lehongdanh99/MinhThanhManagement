@@ -452,8 +452,8 @@
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding"
                                VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
-                            
-                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding NameNote}">
+
+                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding NameNote, Converter={StaticResource EnumToStringConverter}}" >
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -494,7 +494,7 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTemplateColumn Header="Trạng thái" IsReadOnly="False" Width="100">
+                            <DataGridTemplateColumn Header="Trạng thái" IsReadOnly="False" Width="100" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
