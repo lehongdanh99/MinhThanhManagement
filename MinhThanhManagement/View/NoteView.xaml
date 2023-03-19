@@ -4,13 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinhThanhManagement.View"
+        xmlns:assembly="clr-namespace:System;assembly=mscorlib"
+        xmlns:com="clr-namespace:MinhThanhManagement"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" 
+        xmlns:local1="clr-namespace:MinhThanhManagement.ViewModel"
         mc:Ignorable="d"
         DataContext="{StaticResource NoteViewModel}"
         Title="NoteView" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
-
+        <local1:EnumToStringConverter x:Key="EnumToStringConverter" />
+        <local1:EnumStatusNoteToStringConverter x:Key="enumStatusNoteToStringConverter" />
+        <ObjectDataProvider x:Key="statusNote" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="com:noteEnum"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
         <!--menu button-->
         <Style x:Key="menuButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>
@@ -380,6 +389,7 @@
             <!--Filter-->
             <Grid Grid.Row="0" >
 
+                
 
                 <!--<Grid Width="500" HorizontalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
@@ -444,6 +454,11 @@
                                 <TextBlock Text="Thêm Ghi Chú"/>
                             </StackPanel>
                         </Button>
+                        <ComboBox Width="200" HorizontalAlignment="Left" Margin="30 0 0 0" 
+                                  SelectedItem="{Binding StatusNoteSelectedItem, Mode=TwoWay, Converter={StaticResource enumStatusNoteToStringConverter}}" 
+                                                     ItemsSource="{Binding Source={StaticResource statusNote}}" >
+
+                        </ComboBox>
 
                     </Grid>
 
@@ -452,8 +467,8 @@
                               Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
-                            
-                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding NameNote}">
+
+                            <DataGridTextColumn Header="Ghi Chú" CanUserResize="False" Width="*" Binding="{Binding NameNote, Converter={StaticResource EnumToStringConverter}}" >
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -494,22 +509,11 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTemplateColumn Header="Trạng thái" IsReadOnly="False" Width="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <!--<Button Style="{DynamicResource gridEditButton}">
-                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>-->
-                                            <!--<Button Style="{DynamicResource gridRemoveButton}" Margin="10 0 0 0" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
-                                              Path=DataContext.DeleteStorageCommand}"
-                            CommandParameter="{Binding}">
-                                                <Icon:PackIconMaterial Kind="Delete" Style="{StaticResource gridButtonIcon}"/>
-                                            </Button>-->
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridComboBoxColumn  Header="Trạng thái" IsReadOnly="False" Width="200" 
+                                                     SelectedItemBinding="{Binding StatusNoteSelectedItem, Mode=TwoWay}" 
+                                                     ItemsSource="{Binding Source={StaticResource statusNote}, Converter={StaticResource enumStatusNoteToStringConverter}}" >
+                                
+                            </DataGridComboBoxColumn>
                             <DataGridTemplateColumn Header="Xóa" IsReadOnly="False" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

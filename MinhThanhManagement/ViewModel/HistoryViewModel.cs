@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Documents;
+using static System.Net.WebRequestMethods;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -23,12 +25,43 @@ namespace MinhThanhManagement.ViewModel
             return _instance;
         }
 
+        private int billCount;
+
+        public int BillCount
+        {
+            get { return billCount; }
+            set 
+            { 
+                billCount = value;
+                OnPropertyChanged(nameof(BillCount));
+            }
+        }
+
+        private DateTime _selectedDate = DateTime.Today;
+
+        public DateTime SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                if (_selectedDate != value)
+                {
+                    _selectedDate = value;
+                    ReadFileinFolder();
+                    OnPropertyChanged(nameof(SelectedDate));
+                }
+            }
+        }
+
+
+
+
         private ObservableCollection<FileInfo> listFile = new ObservableCollection<FileInfo>();
 
         public ObservableCollection<FileInfo> ListFile
         {
             get { return listFile; }
-            set { listFile = value; }
+            set { listFile = value; OnPropertyChanged(nameof(ListFile)); }
         }
 
         public HistoryViewModel()
@@ -38,12 +71,30 @@ namespace MinhThanhManagement.ViewModel
 
         public void ReadFileinFolder()
         {
+            ListFile.Clear();
+            ObservableCollection<FileInfo> newlistReadFile = new ObservableCollection<FileInfo>();
             string folderPath = "New folder";
             string[] filePaths = Directory.GetFiles(folderPath);
             foreach (string filePath in filePaths)
             {
-                ListFile.Add(new FileInfo(filePath));
+                //ListFile.Add(filePath.ToString());
+                newlistReadFile.Add(new FileInfo(filePath));
+                
+
             }
+            // Lọc các file theo ngày tạo file
+
+            foreach (FileInfo item in newlistReadFile)
+            {
+                if(item.CreationTime.Date == SelectedDate.Date)
+                {
+                    ListFile.Add(item);
+                }
+            }
+            OnPropertyChanged(nameof(ListFile));
+            
+            BillCount = ListFile.Count();
+            OnPropertyChanged(nameof(BillCount));
         }
 
 

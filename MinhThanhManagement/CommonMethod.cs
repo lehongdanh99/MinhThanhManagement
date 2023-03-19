@@ -64,7 +64,7 @@ namespace MinhThanhManagement
                     storeModel.PlaceNote = (models[3].ToString());
                     storeModel.NameNote = (NoteName)Enum.Parse(typeof(NoteName), models[4].ToString()) ;
                     storeModel.DetailNote= (models[5].ToString());                   
-                    storeModel.StatusNote= (NoteStatus)Enum.Parse(typeof(NoteStatus), models[6].ToString());
+                    storeModel.StatusNote= (NoteStatus)(NoteStatus)Enum.Parse(typeof(NoteStatus), models[6].ToString());
                     ListStorageModel.Add(storeModel);
                 }
             }

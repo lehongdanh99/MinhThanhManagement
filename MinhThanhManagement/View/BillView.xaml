@@ -336,7 +336,7 @@
                 <Button x:Name="CancelButton" Background="Red" Width="150" Margin="5" Click="close_page">
                     <TextBlock Text="Hủy"></TextBlock>
                 </Button>
-                <Button Background="Green" Width="150" Click="print">
+                <Button x:Name="PrintButton" Background="Green" Width="150" Click="print">
                     <Icon:PackIconMaterial Kind="Printer" Style="{StaticResource gridButtonIcon}"/>
                 </Button>
             </StackPanel>
