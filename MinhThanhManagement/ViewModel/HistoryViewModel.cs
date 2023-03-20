@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Documents;
 using static System.Net.WebRequestMethods;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -36,6 +38,17 @@ namespace MinhThanhManagement.ViewModel
                 OnPropertyChanged(nameof(BillCount));
             }
         }
+
+        private FileInfo selectedFile;
+
+        public FileInfo SelectedFile
+        {
+            get { return selectedFile; }
+            set { selectedFile = value; }
+        }
+
+
+        public ICommand OpenFileCommand { get; }
 
         private DateTime _selectedDate = DateTime.Today;
 
@@ -67,6 +80,17 @@ namespace MinhThanhManagement.ViewModel
         public HistoryViewModel()
         {
             ReadFileinFolder();
+            OpenFileCommand = new RelayCommand(OpenFile);
+        }
+
+        private void OpenFile()
+        {
+            string path = SelectedFile.DirectoryName;
+            if (!string.IsNullOrEmpty(path))
+            {
+                // Mở tệp ở đây
+                System.Diagnostics.Process.Start(SelectedFile.FullName);
+            }
         }
 
         public void ReadFileinFolder()

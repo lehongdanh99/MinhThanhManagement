@@ -48,9 +48,6 @@ namespace MinhThanhManagement.View
             }
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
 
-        }
     }
 }

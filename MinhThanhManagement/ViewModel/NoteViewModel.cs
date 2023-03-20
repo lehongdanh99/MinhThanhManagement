@@ -125,22 +125,18 @@ namespace MinhThanhManagement.ViewModel
         {
             DetailNoteView.GetInstance().ShowDialog();
             TxtVisibleAlert = Visibility.Visible;
+            ListNotes = GlobalDef.ListNotesModel;
+            ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+            OnPropertyChanged(nameof(ListNotes));
+            OnPropertyChanged(nameof(ListDataNote));
         }
 
         //Count the tasks need to be done to show on HomeViewModel notification
         public int NotificationCounting()
         {
-            //Dummy Data
-            string date = "03/21/2023";
-            string dummyDate = "03/05/2023";
-
-            ListNotes.Add(new NotesModel()
-            {
-                EndDate = Convert.ToDateTime(date),
-            }); ;
-            //
+            
             List<DateTime> notificationCountList = new List<DateTime>();
-            foreach (NotesModel notes in ListNotes)
+            foreach (NotesModel notes in GlobalDef.ListNotesModel)
             {
                 if(!notes.StatusNote)
                 {
@@ -151,8 +147,8 @@ namespace MinhThanhManagement.ViewModel
             NotificationCount = 0;
             foreach(DateTime note in notificationCountList)
             {
-                int count = (DateTime.Now - note).Days;
-                if (count < 2)
+                double count = (note - DateTime.Now).Days;
+                if (count < 2 && count >= 0)
                 {
                     NotificationCount++;
                 }

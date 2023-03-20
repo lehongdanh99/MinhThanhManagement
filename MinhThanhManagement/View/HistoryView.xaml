@@ -335,7 +335,7 @@
 
                 <Border CornerRadius="20 0 0 20" Background="#fefefe"/>
 
-                <Border CornerRadius="0 20 20 0" MouseDown="Border_MouseDown" Background="DodgerBlue" Grid.Column="1"/>
+                <Border CornerRadius="0 20 20 0" Background="DodgerBlue" Grid.Column="1"/>
             </Grid>
 
             <!--Grid controls-->
@@ -360,26 +360,43 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
                     <TextBlock Text="Thông tin hóa đơn"  FontSize="20" HorizontalAlignment="Center" Margin="20" FontWeight="Bold" Foreground="White"/>
-                    <StackPanel Orientation="Horizontal">
+                    <Grid >
                         <TextBlock Text="Số lượng đơn" Margin="10 0 0 0" Foreground="White" FontWeight="Bold" FontSize="15"></TextBlock>
-                        <TextBlock Text="{Binding BillCount}" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="White" FontSize="17" FontWeight="Bold"></TextBlock>
-                    </StackPanel>
+                        <TextBlock Text="{Binding BillCount}" HorizontalAlignment="Left" Margin="120 -10 0 0" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="Bold"></TextBlock>
+                        <Button HorizontalAlignment="Right" Margin="0 0 20 0" Width="100" Background="White" Content="Mở file" Foreground="DodgerBlue" Command="{Binding OpenFileCommand}"></Button>
+                    </Grid>
                     
                     <Border CornerRadius="10" Background="White" Margin="10">
-                        <ListView ItemsSource="{Binding ListFile}" Background="White" Width="auto" Height="auto">
-                            <ListView.ItemTemplate>
+                        <ListView ItemsSource="{Binding ListFile}" Background="White" Width="auto" Height="auto" SelectedValue="{Binding SelectedFile}">
+                            <!--<ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Width="auto">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="400"/>
-                                            <ColumnDefinition Width="100"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding Name}" Margin="5" Grid.Column="0"/>
-                                        <TextBlock Text="{Binding CreationTime,  StringFormat='hh:mm:ss tt'}" Grid.Column="1"
+                                    <Button Width="auto" Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" Margin="5" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding CreationTime,  StringFormat='hh:mm:ss tt'}" Grid.Column="1"
                                                    Margin="5" HorizontalAlignment="Right"/>
-                                    </Grid>
+                                        </StackPanel>
+                                        
+                                    </Button>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
+                            </ListView.ItemTemplate>-->
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Tên tệp" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="Ngày tạo" DisplayMemberBinding="{Binding CreationTime,  StringFormat='hh:mm:ss tt'}" />
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="ContextMenu">
+                                        <Setter.Value>
+                                            <ContextMenu>
+                                                <MenuItem Header="Mở" Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                                            </ContextMenu>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                         </ListView>
 
                     </Border>

@@ -99,7 +99,6 @@ namespace MinhThanhManagement.ViewModel
                     return;
                 }
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                GlobalDef.isAddGlobel = Visibility.Visible;
             }
             else
             {

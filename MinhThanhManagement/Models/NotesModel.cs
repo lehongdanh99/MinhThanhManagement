@@ -18,6 +18,7 @@ namespace MinhThanhManagement.Models
 		private string detailNote;
 		private bool statusNote;
 		private bool isCheck;
+		private bool warning;
 
 
         public bool StatusNote
@@ -68,8 +69,36 @@ namespace MinhThanhManagement.Models
             set { isCheck = value; }
         }
 
+		public bool Warning
+		{
+			get {
+				if (EndDate != null && (EndDate - DateTime.Now).Days < 2 
+					&& (EndDate - DateTime.Now).Days >= 0)
+				{
+					return true;
 
-        public ObservableCollection<NoteStatus> MyComboBoxItems = new ObservableCollection<NoteStatus> { NoteStatus.NotDone,NoteStatus.Done };
+				}
+				else
+				{
+					return false;
+				}
+			}
+			set { warning = value;
+				if (EndDate != null && (EndDate - DateTime.Now).Days < 2
+					&& (EndDate - DateTime.Now).Days >= 0)
+				{
+					warning = true;
+
+				}
+				else
+				{
+					warning = false;
+				}
+			}
+		}
+
+
+		public ObservableCollection<NoteStatus> MyComboBoxItems = new ObservableCollection<NoteStatus> { NoteStatus.NotDone,NoteStatus.Done };
         //public enum NoteStatuses
         //{
         //    NotDone, // Show to GUI "Chưa hoàn thành"
