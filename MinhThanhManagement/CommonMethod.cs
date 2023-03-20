@@ -64,7 +64,7 @@ namespace MinhThanhManagement
                     storeModel.PlaceNote = (models[3].ToString());
                     storeModel.NameNote = (NoteName)Enum.Parse(typeof(NoteName), models[4].ToString()) ;
                     storeModel.DetailNote= (models[5].ToString());                   
-                    storeModel.StatusNote= (NoteStatus)(NoteStatus)Enum.Parse(typeof(NoteStatus), models[6].ToString());
+                    storeModel.StatusNote= Convert.ToBoolean(Convert.ToInt16(models[6].ToString()));
                     ListStorageModel.Add(storeModel);
                 }
             }
@@ -91,7 +91,7 @@ namespace MinhThanhManagement
                 stringBuilder.Append(item.PlaceNote.ToString() + ",");
                 stringBuilder.Append(item.NameNote + "," );
                 stringBuilder.Append(item.DetailNote.ToString() + "," );
-                stringBuilder.Append(item.StatusNote + "\n" );
+                stringBuilder.Append(Convert.ToInt16(item.StatusNote) + "\n" );
             }           
             if (!File.Exists(filePath + "MinhThanhNotes.csv"))
             {

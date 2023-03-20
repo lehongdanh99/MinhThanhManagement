@@ -14,7 +14,15 @@ namespace MinhThanhManagement.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-
+        private static HomeViewModel _instance;
+        public static HomeViewModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new HomeViewModel();
+            }
+            return _instance;
+        }
         CommonMethod commonMethod = new CommonMethod();
 
         public ICommand SaveCommand { get; private set; }
@@ -28,7 +36,6 @@ namespace MinhThanhManagement.ViewModel
 
         public ICommand NavigateHistoryCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
-
 
         private ObservableCollection<StorageModel> listStorage = new ObservableCollection<StorageModel>();
 
@@ -55,6 +62,24 @@ namespace MinhThanhManagement.ViewModel
         {
             get { return listDataStorage; }
             set { listDataStorage = value; }
+        }
+
+        private Visibility txtVisibleAlert = Visibility.Collapsed;
+
+        public Visibility TxtVisibleAlert
+        {
+            get { return txtVisibleAlert; }
+            set { txtVisibleAlert = value;
+                OnPropertyChanged(nameof(TxtVisibleAlert));
+            }
+        }
+
+        private string notificationCount;
+
+        public string NotificationCount
+        {
+            get { return notificationCount; }
+            set { notificationCount = value; }
         }
 
 
@@ -147,7 +172,7 @@ namespace MinhThanhManagement.ViewModel
         }
         public HomeViewModel()
         {
-            NoteViewModel.GetInstance().NotificationCounting();
+            NotificationCount = NoteViewModel.GetInstance().NotificationCounting().ToString();
             Initialize();
         }
         public void Initialize()
@@ -215,6 +240,7 @@ namespace MinhThanhManagement.ViewModel
         private void AddStorageCommand()
         {
             DetailStorageView.GetInstance().ShowDialog();
+            TxtVisibleAlert = Visibility.Visible;
         }
 
         private void NavigateHometoNoteCommand()
@@ -237,30 +263,39 @@ namespace MinhThanhManagement.ViewModel
             if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath))
             {
                 MessageBox.Show("Lưu thành công!");
+                TxtVisibleAlert = Visibility.Collapsed;
             }
             else MessageBox.Show("Lưu thất bại lien hệ Danh :(");
         }
         private void DeleteStorageCommand()
         {
-            List<int> ListIDCheck = new List<int>();
-            foreach (var item in ListStorage.ToList())
+            MessageBoxResult dialogResult =  MessageBox.Show("Bạn có chắc chắn muốn xóa!","Thông báo",MessageBoxButton.OKCancel,MessageBoxImage.Information);
+            if (dialogResult == MessageBoxResult.OK)
             {
-                if (item.IsCheck)
+                List<int> ListIDCheck = new List<int>();
+                foreach (var item in ListStorage.ToList())
                 {
-                    //ListIDCheck.Add(item.Id);
-                    ListStorage.Remove(item);
+                    if (item.IsCheck)
+                    {
+                        //ListIDCheck.Add(item.Id);
+                        ListStorage.Remove(item);
+                    }
                 }
+                if (GlobalDef.ListStorageModel.Count != ListStorage.Count)
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    TxtVisibleAlert = Visibility.Visible;
+                    OnPropertyChanged(nameof(TxtVisibleAlert));
+                }
+                //ListStorage = GlobalDef.ListStorageModel;
+                OnPropertyChanged(nameof(ListStorage));
+                ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+                OnPropertyChanged(nameof(ListDataStorage));
             }
-
-            if (GlobalDef.ListStorageModel.Count != ListStorage.Count)
+            else if (dialogResult == MessageBoxResult.Cancel)
             {
-                MessageBox.Show("Xóa thành công!");
+                
             }
-            //ListStorage = GlobalDef.ListStorageModel;
-            OnPropertyChanged(nameof(ListStorage));
-            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
-            OnPropertyChanged(nameof(ListDataStorage));
-            
             
         }
 

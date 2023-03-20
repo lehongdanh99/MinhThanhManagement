@@ -121,18 +121,10 @@ namespace MinhThanhManagement.ViewModel
             set { test = value; }
         }
 
-        private noteEnum statusNoteSelectedItem;
-
-        public noteEnum StatusNoteSelectedItem
-        {
-            get { return statusNoteSelectedItem; }
-            set { statusNoteSelectedItem = value; }
-        }
-
-
         public void AddNote()
         {
             DetailNoteView.GetInstance().ShowDialog();
+            TxtVisibleAlert = Visibility.Visible;
         }
 
         //Count the tasks need to be done to show on HomeViewModel notification
@@ -150,7 +142,7 @@ namespace MinhThanhManagement.ViewModel
             List<DateTime> notificationCountList = new List<DateTime>();
             foreach (NotesModel notes in ListNotes)
             {
-                if(notes.StatusNote == CommonMethod.NoteStatus.NotDone)
+                if(!notes.StatusNote)
                 {
                     notificationCountList.Add(notes.EndDate);
                 }
@@ -173,29 +165,51 @@ namespace MinhThanhManagement.ViewModel
             if (!string.IsNullOrEmpty(TextToFilter))
             {
                 var noteDetail = obj as NotesModel;
-                return noteDetail != null && noteDetail.DetailNote.Contains(TextToFilter);
+                return noteDetail != null && noteDetail.DetailNote.ToUpper().Contains(TextToFilter);
 
             }
             return true;
         }
 
+        private Visibility txtVisibleAlert = Visibility.Collapsed;
+
+        public Visibility TxtVisibleAlert
+        {
+            get { return txtVisibleAlert; }
+            set
+            {
+                txtVisibleAlert = value;
+                OnPropertyChanged(nameof(TxtVisibleAlert));
+            }
+        }
+
         private void DeleteNote()
         {
-            foreach (var item in ListNotes.ToList())
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa!", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            if (dialogResult == MessageBoxResult.OK)
             {
-                if (item.IsCheck)
+                foreach (var item in ListNotes.ToList())
                 {
-                    //ListIDCheck.Add(item.Id);
-                    ListNotes.Remove(item);
+                    if (item.IsCheck)
+                    {
+                        //ListIDCheck.Add(item.Id);
+                        ListNotes.Remove(item);
+                    }
                 }
-            }
 
-            if (GlobalDef.ListNotesModel.Count != ListNotes.Count)
-            {
-                MessageBox.Show("Xóa thành công!");
-                GlobalDef.ListNotesModel = ListNotes;
+                if (GlobalDef.ListNotesModel.Count != ListNotes.Count)
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    GlobalDef.ListNotesModel = ListNotes;
+                    TxtVisibleAlert = Visibility.Visible;
+                }
+                ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+
             }
-            ListDataNote = CollectionViewSource.GetDefaultView(ListNotes);
+            else if (dialogResult == MessageBoxResult.Cancel)
+            {
+
+            }
 
         }
 
@@ -213,6 +227,7 @@ namespace MinhThanhManagement.ViewModel
             if (commonMethod.WriteNoteFileCsv(ListNotes, GlobalDef.CsvPath))
             {
                 MessageBox.Show("Lưu thành công!");
+                TxtVisibleAlert = Visibility.Collapsed;
             }
             else MessageBox.Show("Lưu thất bại lien hệ Danh :(");
         }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MinhThanhManagement.View"
+        xmlns:global="clr-namespace:MinhThanhManagement"
         mc:Ignorable="d"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -468,21 +469,25 @@
                     <Icon:PackIconMaterial Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6"
                                            HorizontalAlignment="Right"/>
                 </Grid>-->
-                <Button Width="40" Height="40" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 0 20 0">
+                <Button Width="40" Height="40" Style="{DynamicResource NotiButton}" HorizontalAlignment="Right" Margin="0 10 20 0" Command="{Binding NavigateNoteCommand}">
                     <StackPanel>
                         
                         <Icon:PackIconMaterial Kind="Bell" Foreground="Gray" Width="40" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        
-                        <TextBlock Text="{Binding NotificationCount}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center"
-                           Margin="0,-60,-30,0"/>     
+
+
                         <Border Background="Red" 
                             Width="15" 
                             Height="15" 
                             CornerRadius="10" 
                             Margin="0,-60,-30,0" 
-                            />      
+                            >
+                            <TextBlock Text="{Binding NotificationCount}" 
+                           Width="10"
+                                       FontSize="12"
+                                       Foreground="White"
+                                       Height="20"
+                           Margin="3,0,0,0"/>
+                        </Border>      
                     </StackPanel>
                 </Button>
 
@@ -538,10 +543,12 @@
             <Grid Grid.Row="2" Margin="50, 0">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="60"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <TextBlock Grid.Row="0" Visibility="{Binding TxtVisibleAlert}" Text=" Dữ liệu có thể đã bị thay đổi vui lòng bấm lưu !!" FontStyle="Italic" VerticalAlignment="Center" Foreground="Red" FontSize="12" HorizontalAlignment="Center"/>
+                    <Grid Grid.Row="1">
                         <Grid>
                             <TextBlock Margin=" 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                                Panel.ZIndex="1" Text="Tất cả..." Visibility="{Binding ElementName=TextSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -591,7 +598,7 @@
 
 
                     <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="DataGridXaml" ItemsSource="{Binding ListDataStorage}" AutoGenerateColumns="False"
-                              Grid.Row="1" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
+                              Grid.Row="2" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow" CanUserDeleteRows="{Binding UserCanDelete}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">

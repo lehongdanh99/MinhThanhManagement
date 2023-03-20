@@ -7,11 +7,11 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using MinhThanhManagement.Models;
-using MinhThanhManagement.View;
+using static MinhThanhManagement.ViewModel.HomeViewModel;
 
 namespace MinhThanhManagement.ViewModel
 {
-    public class DetailStorageViewModel
+    public class DetailStorageViewModel : BaseViewModel
     {
         #region Properties
         private string groupTxt;
@@ -57,6 +57,7 @@ namespace MinhThanhManagement.ViewModel
         }
         public DetailStorageViewModel()
 		{
+            
             AddItemCommand = new RelayCommand(AddItemDetailStorageCommand);
 
 		}
@@ -98,6 +99,7 @@ namespace MinhThanhManagement.ViewModel
                     return;
                 }
                 MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                GlobalDef.isAddGlobel = Visibility.Visible;
             }
             else
             {

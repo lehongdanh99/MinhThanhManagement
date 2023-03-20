@@ -71,6 +71,10 @@ namespace MinhThanhManagement.View
                         printDialog.PrintVisual(billPage, "Invoice");
                         MessageBox.Show("Đã xuất file PDF");
                         this.Hide();
+                        AddGroupStackpanel.Visibility = Visibility.Visible;
+                        CancelButton.Visibility = Visibility.Visible;
+                        dataGridTempDelete.Visibility = Visibility.Visible;
+                        PrintButton.Visibility = Visibility.Visible;
                     }
                 }
                 else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,11 @@ namespace MinhThanhManagement.Models
 		private string placeNote;
 		private NoteName nameNote;
 		private string detailNote;
-		private NoteStatus statusNote;
+		private bool statusNote;
 		private bool isCheck;
 
-		public NoteStatus StatusNote
+
+        public bool StatusNote
         {
 			get { return statusNote; }
 			set { statusNote = value; }
@@ -65,5 +67,13 @@ namespace MinhThanhManagement.Models
             get { return isCheck; }
             set { isCheck = value; }
         }
+
+
+        public ObservableCollection<NoteStatus> MyComboBoxItems = new ObservableCollection<NoteStatus> { NoteStatus.NotDone,NoteStatus.Done };
+        //public enum NoteStatuses
+        //{
+        //    NotDone, // Show to GUI "Chưa hoàn thành"
+        //    Done // Show to GUI "Chưa xong"
+        //}
     }
 }

@@ -11,13 +11,13 @@ using static MinhThanhManagement.CommonMethod;
 
 namespace MinhThanhManagement.ViewModel
 {
-    public class DetailNoteViewModel
+    public class DetailNoteViewModel : BaseViewModel
     {
 		private string placeNoteText;
 		private string detailNoteText;
 		private NoteName typeNoteText;
-		private DateTime noteDatePicker;
-		private DateTime endNoteDatePicker;
+		private DateTime noteDatePicker = DateTime.Now;
+		private DateTime endNoteDatePicker = DateTime.Now;
         public ICommand AddNoteCommand { get; private set; }
         public DateTime EndNoteDatePicker
 		{
@@ -31,7 +31,28 @@ namespace MinhThanhManagement.ViewModel
 			set { noteDatePicker = value; }
 		}
 
-		public NoteName TypeNoteText
+        private List<string> listNoteNames = new List<string>();
+
+        public List<string> ListNoteNames
+        {
+            get { return listNoteNames; }
+            set { listNoteNames = value; }
+        }
+
+        private string selectedItemAutoCompleteNoteName;
+
+        public string SelectedItemAutoCompleteNoteName
+        {
+            get => selectedItemAutoCompleteNoteName;
+            set
+            {
+                selectedItemAutoCompleteNoteName = value;
+                OnPropertyChanged(nameof(SelectedItemAutoCompleteNoteName));
+                
+            }
+        }
+
+        public NoteName TypeNoteText
         {
 			get { return typeNoteText; }
 			set { typeNoteText = value; }
@@ -52,8 +73,27 @@ namespace MinhThanhManagement.ViewModel
 		{
 			AddNoteCommand = new RelayCommand(AddNoteButton);
 
+
+            ListNoteNames = new List<string>() { "Cần làm", "Còn Thiếu", "Thu Hóa Đơn"};
+                
+
         }
-		 
+		private NoteName convertCbbToEnum(string notename)
+        {
+            if(notename.Equals("Cần Làm"))
+            {
+                return NoteName.ToDo;
+            }
+            if (notename.Equals("Thu Hóa Đơn"))
+            {
+                return NoteName.Collect;
+            }
+            if (notename.Equals("Còn Thiếu"))
+            {
+                return NoteName.Debt;
+            }
+            return NoteName.ToDo;
+        }
 		public void AddNoteButton()
 		{
             for (int i = 0; i < GlobalDef.ListNotesModel.Count; i++)
@@ -70,17 +110,17 @@ namespace MinhThanhManagement.ViewModel
         }
 		private void addItemToNote(int id)
 		{
-            if (!string.IsNullOrEmpty(DetailNoteText) && !string.IsNullOrEmpty(PlaceNoteText) && !string.IsNullOrEmpty(TypeNoteText.ToString()) && !string.IsNullOrEmpty(NoteDatePicker.ToString()) && !string.IsNullOrEmpty(EndNoteDatePicker.ToString()))
+            if (!string.IsNullOrEmpty(DetailNoteText) && !string.IsNullOrEmpty(PlaceNoteText) && !string.IsNullOrEmpty(SelectedItemAutoCompleteNoteName.ToString()) && !string.IsNullOrEmpty(NoteDatePicker.ToString()) && !string.IsNullOrEmpty(EndNoteDatePicker.ToString()))
             {
                 NotesModel notesModel = new NotesModel()
                 {
                     IdNote = Convert.ToInt32(id),
-                    NameNote = (NoteName)TypeNoteText,
+                    NameNote = convertCbbToEnum(selectedItemAutoCompleteNoteName),
                     DetailNote = DetailNoteText.ToString(),
                     PlaceNote = PlaceNoteText.ToString(),
                     NoteDate = NoteDatePicker,
                     EndDate = EndNoteDatePicker,
-                    StatusNote = NoteStatus.NotDone,
+                    StatusNote = false,
                 };
                 GlobalDef.ListNotesModel.Add(notesModel);
                 CommonMethod commonMethod = new CommonMethod();
