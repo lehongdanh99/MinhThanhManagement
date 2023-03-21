@@ -52,7 +52,7 @@
         <Style x:Key="closeButton" TargetType="{x:Type Button}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="25"/>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -63,6 +63,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
 
         <!--Noti and Minimize button-->
         <Style x:Key="NotiButton" TargetType="{x:Type Button}">
@@ -412,43 +413,48 @@
 
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <Button Grid.Column="0" Height="40" Style="{DynamicResource menuButton}">
+                        <Border CornerRadius="20" Grid.Column="0" Width="100">
+                            <Image Height="50" Width="50" HorizontalAlignment="Center" Margin="10" x:Name="myImage" Source="/Images/logo.jpg" Stretch="Uniform"/>
+
+                        </Border>
+
+                        <Button Grid.Column="1" Height="40" Style="{DynamicResource menuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="HomeVariant" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Kho"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="1" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateHistoryCommand}">
+                        <Button Grid.Column="2" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateHistoryCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="History" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Lịch sử"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="2" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateNoteCommand}">
+                        <Button Grid.Column="3" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateNoteCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Note" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Ghi chú"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="3" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateBillCommand}">
+                        <Button Grid.Column="4" Margin="10 5" Style="{DynamicResource menuButton}" Command="{Binding NavigateBillCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="PaperRollOutline" Style="{DynamicResource menuIconButton}"/>
                                 <TextBlock Text="Hóa đơn"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="4" Style="{DynamicResource closeButton}" Background="Yellow" Margin=" 0 0 40 0" HorizontalAlignment="Right" Click="minimizeApp">
+                        <Button Grid.Column="5" Style="{DynamicResource closeButton}" Background="Yellow" Margin=" 0 0 40 0" HorizontalAlignment="Right" Click="minimizeApp">
                             <StackPanel>
                                 <Icon:PackIconMaterial Kind="Minus" Foreground="Black" Width="10" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                        <Button Grid.Column="5" Style="{DynamicResource closeButton}" Background="Red" Margin="10" HorizontalAlignment="Right" Click="closeApp">
+                        <Button Grid.Column="6" Style="{DynamicResource closeButton}" Background="Red" Margin="10" HorizontalAlignment="Right" Click="closeApp">
                             <StackPanel>
                                 <Icon:PackIconMaterial Kind="Close" Foreground="Black" Width="10" VerticalAlignment="Center"/>
                             </StackPanel>
@@ -460,7 +466,7 @@
             
             <!--Filter-->
             <Grid Grid.Row="1"  >
-                
+
 
                 <!--<Grid Width="500" HorizontalAlignment="Center">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
@@ -492,49 +498,7 @@
                 </Button>
 
 
-                <!--<Grid Grid.Row="1" Margin="0 10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <materialDesign:Card Height="100" Background="Green" Margin="10 0">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="Lượng nhập" FontSize="30" 
-                                   VerticalAlignment="Center" Foreground="White" Margin="10 0"/>
-                            <TextBlock Grid.Row="1" Text="123456" FontSize="20" Foreground="White" 
-                                   VerticalAlignment="Center" Margin="10"/>
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Column="1" Margin="10 0" Height="100" Background="Blue">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="Lượng xuất" FontSize="30" 
-                                   VerticalAlignment="Center" Foreground="White" Margin="10 0"/>
-                            <TextBlock Grid.Row="1" Text="123456" FontSize="20" Foreground="White" 
-                                   VerticalAlignment="Center" Margin="10"/>
-                        </Grid>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Column="2" Margin="10 0" Height="100" Background="red">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="Tồn kho" FontSize="30" 
-                                   VerticalAlignment="Center" Foreground="White" Margin="10 0"/>
-                            <TextBlock Grid.Row="1" Text="123456" FontSize="20" Foreground="White" 
-                                   VerticalAlignment="Center" Margin="10"/>
-                        </Grid>
-                    </materialDesign:Card>
-                </Grid>-->
+                
 
 
 
@@ -547,13 +511,18 @@
                         <RowDefinition Height="60"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Visibility="{Binding TxtVisibleAlert}" Text=" Dữ liệu có thể đã bị thay đổi vui lòng bấm lưu !!" FontStyle="Italic" VerticalAlignment="Center" Foreground="Red" FontSize="12" HorizontalAlignment="Center"/>
+                    <Grid  Grid.Row="0">
+                        <TextBlock Visibility="{Binding TxtVisibleAlert}" Text=" Dữ liệu có thể đã bị thay đổi vui lòng bấm lưu !!" FontStyle="Italic" VerticalAlignment="Center" Foreground="Red" FontSize="12" HorizontalAlignment="Center"/>
+
+                    </Grid>
                     <Grid Grid.Row="1">
-                        <Grid>
+                        <Grid >
                             <TextBlock Margin=" 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                                Panel.ZIndex="1" Text="Tất cả..." Visibility="{Binding ElementName=TextSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <TextBox x:Name="TextSearch" HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
                             </TextBox>
+                            <Icon:PackIconMaterial Kind="Magnify" Width="20" Height="20" VerticalAlignment="Center" Margin="120 0 50 0" Foreground="#b0b9c6"
+                                           HorizontalAlignment="Left"/>
                         </Grid>
                         
 
@@ -601,14 +570,7 @@
                               Grid.Row="2" Margin="1,0,-10,0" SelectedIndex="{Binding SelectedItemStorage}"  ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="False" CellEditEnding="MyDataGrid_CellEditEnding" CanUserAddRows="False"
                                VerticalScrollBarVisibility="Hidden" LoadingRow="MyDataGrid_LoadingRow" CanUserDeleteRows="{Binding UserCanDelete}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No" CanUserResize="False" Width="100" Binding="{Binding Id}">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="{x:Type DataGridCell}">
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            
                             <DataGridTextColumn Header="Loại Sản Phẩm" CanUserResize="False" Width="*" Binding="{Binding Group}">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="{x:Type DataGridCell}">
