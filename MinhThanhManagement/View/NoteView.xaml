@@ -430,6 +430,8 @@
                                Panel.ZIndex="1" Text="Tất cả..." Visibility="{Binding ElementName=TextSearch, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <TextBox x:Name="TextSearch" HorizontalAlignment="Left" Margin="0" Text="{Binding TextToFilter, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="30">
                             </TextBox>
+                            <Icon:PackIconMaterial Kind="Magnify" Width="20" Height="20" VerticalAlignment="Center" Margin="120 0 50 0" Foreground="#b0b9c6"
+                                           HorizontalAlignment="Left"/>
                         </Grid>
                         
                         <TextBlock Text="Ghi Chú" VerticalAlignment="Center" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
