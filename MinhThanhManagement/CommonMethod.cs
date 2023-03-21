@@ -86,8 +86,8 @@ namespace MinhThanhManagement
             foreach(NotesModel item in newList)
             {
                 stringBuilder.Append(item.IdNote + ",");
-                stringBuilder.Append(item.NoteDate.ToShortTimeString() + ",");
-                stringBuilder.Append(item.EndDate.ToShortTimeString() + ",");
+                stringBuilder.Append(item.NoteDate.ToShortDateString() + ",");
+                stringBuilder.Append(item.EndDate.ToShortDateString() + ",");
                 stringBuilder.Append(item.PlaceNote.ToString() + ",");
                 stringBuilder.Append(item.NameNote + "," );
                 stringBuilder.Append(item.DetailNote.ToString() + "," );

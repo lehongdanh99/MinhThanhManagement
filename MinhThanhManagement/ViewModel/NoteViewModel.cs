@@ -181,7 +181,7 @@ namespace MinhThanhManagement.ViewModel
 
         private void DeleteNote()
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa!", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa!", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (dialogResult == MessageBoxResult.OK)
             {
                 foreach (var item in ListNotes.ToList())
@@ -222,7 +222,7 @@ namespace MinhThanhManagement.ViewModel
             //ListStorage = GlobalDef.ListStorageModel;
             if (commonMethod.WriteNoteFileCsv(ListNotes, GlobalDef.CsvPath))
             {
-                MessageBox.Show("Lưu thành công!");
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 TxtVisibleAlert = Visibility.Collapsed;
             }
             else MessageBox.Show("Lưu thất bại lien hệ Danh :(");

@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using static System.Net.WebRequestMethods;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using System.Windows;
 
 namespace MinhThanhManagement.ViewModel
 {
@@ -46,8 +47,6 @@ namespace MinhThanhManagement.ViewModel
             get { return selectedFile; }
             set { selectedFile = value; }
         }
-
-
         public ICommand OpenFileCommand { get; }
 
         private DateTime _selectedDate = DateTime.Today;
@@ -65,9 +64,6 @@ namespace MinhThanhManagement.ViewModel
                 }
             }
         }
-
-
-
 
         private ObservableCollection<FileInfo> listFile = new ObservableCollection<FileInfo>();
 
@@ -97,14 +93,24 @@ namespace MinhThanhManagement.ViewModel
         {
             ListFile.Clear();
             ObservableCollection<FileInfo> newlistReadFile = new ObservableCollection<FileInfo>();
-            string folderPath = "New folder";
+            string folderPath = AppDomain.CurrentDomain.BaseDirectory + "HoaDon";
+            if (!System.IO.Directory.Exists(folderPath))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(folderPath);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Lỗi đọc file", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
             string[] filePaths = Directory.GetFiles(folderPath);
             foreach (string filePath in filePaths)
             {
                 //ListFile.Add(filePath.ToString());
-                newlistReadFile.Add(new FileInfo(filePath));
-                
-
+                newlistReadFile.Add(new FileInfo(filePath));          
             }
             // Lọc các file theo ngày tạo file
 
@@ -115,12 +121,9 @@ namespace MinhThanhManagement.ViewModel
                     ListFile.Add(item);
                 }
             }
-            OnPropertyChanged(nameof(ListFile));
-            
+            OnPropertyChanged(nameof(ListFile));          
             BillCount = ListFile.Count();
             OnPropertyChanged(nameof(BillCount));
         }
-
-
     }
 }

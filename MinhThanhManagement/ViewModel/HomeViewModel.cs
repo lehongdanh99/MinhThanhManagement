@@ -268,14 +268,14 @@ namespace MinhThanhManagement.ViewModel
             //ListStorage = GlobalDef.ListStorageModel;
             if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath))
             {
-                MessageBox.Show("Lưu thành công!");
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 TxtVisibleAlert = Visibility.Collapsed;
             }
-            else MessageBox.Show("Lưu thất bại lien hệ Danh :(");
+            else MessageBox.Show("Lưu thất bại lien hệ Danh :(", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void DeleteStorageCommand()
         {
-            MessageBoxResult dialogResult =  MessageBox.Show("Bạn có chắc chắn muốn xóa!","Thông báo",MessageBoxButton.OKCancel,MessageBoxImage.Information);
+            MessageBoxResult dialogResult =  MessageBox.Show("Bạn có chắc chắn muốn xóa!","Thông báo",MessageBoxButton.OKCancel,MessageBoxImage.Error);
             if (dialogResult == MessageBoxResult.OK)
             {
                 List<int> ListIDCheck = new List<int>();

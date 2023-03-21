@@ -45,8 +45,6 @@ D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\MinhThan
 D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\MinhThanhManagement.csproj.CopyComplete
 D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\MinhThanhManagement.exe
 D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\MinhThanhManagement.pdb
-D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\HomeView.g.cs
-D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\HomeView.baml
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\bin\Debug\MinhThanhManagement.csv
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\bin\Debug\MinhThanhManagement.exe.config
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\bin\Debug\MinhThanhManagement.exe
@@ -132,3 +130,36 @@ C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhMan
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\NoteView.g.cs
 C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\NoteView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MinhThanhNotes.csv
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\CommonServiceLocator.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\DotNetProjects.Input.Toolkit.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Core.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Material.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\System.Windows.Interactivity.dll
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Core.pdb
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Core.xml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Material.pdb
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\bin\Debug\MahApps.Metro.IconPacks.Material.xml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\BillView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\DetailNoteView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\DetailStorageView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\HistoryView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\HomeView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\NoteView.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\ResouceXaml.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\BillView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\DetailNoteView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\DetailStorageView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\HistoryView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\HomeView.baml
+D:\Project\Management\MinhThanhManagement\MinhThanhManagement\obj\Debug\View\NoteView.baml
