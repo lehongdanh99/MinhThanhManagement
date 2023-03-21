@@ -65,13 +65,22 @@ namespace MinhThanhManagement.View
                     CancelButton.Visibility = Visibility.Collapsed;
                     dataGridTempDelete.Visibility = Visibility.Collapsed;
                     PrintButton.Visibility = Visibility.Collapsed;
-                    this.Hide();
+                    
                     PrintDialog printDialog = new PrintDialog();
                     if (printDialog.ShowDialog() == true)
                     {
-                        printDialog.PrintVisual(billPage, "Invoice");
-                        MessageBox.Show("Đã xuất file PDF");
                         
+                        printDialog.PrintVisual(billPage, "Invoice");
+
+                        MessageBox.Show("Đã xuất file PDF");
+                        this.Hide();
+                        AddGroupStackpanel.Visibility = Visibility.Visible;
+                        CancelButton.Visibility = Visibility.Visible;
+                        dataGridTempDelete.Visibility = Visibility.Visible;
+                        PrintButton.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
                         AddGroupStackpanel.Visibility = Visibility.Visible;
                         CancelButton.Visibility = Visibility.Visible;
                         dataGridTempDelete.Visibility = Visibility.Visible;
