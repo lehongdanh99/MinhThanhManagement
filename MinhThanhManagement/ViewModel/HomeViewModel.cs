@@ -240,12 +240,18 @@ namespace MinhThanhManagement.ViewModel
         private void AddStorageCommand()
         {
             DetailStorageView.GetInstance().ShowDialog();
+            ListStorage = GlobalDef.ListStorageModel;
+            OnPropertyChanged(nameof(ListStorage));
+            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+            OnPropertyChanged(nameof(ListDataStorage));
             TxtVisibleAlert = Visibility.Visible;
         }
 
         private void NavigateHometoNoteCommand()
         {
-            NoteView.GetInstance().Show();                
+            NoteView.GetInstance().ShowDialog();
+            NotificationCount = NoteViewModel.GetInstance().NotificationCounting().ToString();
+            OnPropertyChanged(nameof(NotificationCount));
         }
         private void NavigateHometoBillCommand()
         {

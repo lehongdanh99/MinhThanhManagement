@@ -25,7 +25,8 @@ namespace MinhThanhManagement.ViewModel
 			set { endNoteDatePicker = value; }
 		}
 
-		public DateTime NoteDatePicker
+        bool warning = false;
+        public DateTime NoteDatePicker
         {
 			get { return noteDatePicker; }
 			set { noteDatePicker = value; }
@@ -112,6 +113,16 @@ namespace MinhThanhManagement.ViewModel
 		{
             if (!string.IsNullOrEmpty(DetailNoteText) && !string.IsNullOrEmpty(PlaceNoteText) && !string.IsNullOrEmpty(SelectedItemAutoCompleteNoteName.ToString()) && !string.IsNullOrEmpty(NoteDatePicker.ToString()) && !string.IsNullOrEmpty(EndNoteDatePicker.ToString()))
             {
+                
+                if (EndNoteDatePicker != null && (EndNoteDatePicker - DateTime.Now).TotalDays < 2)
+                {
+                    warning = true;
+
+                }
+                else
+                {
+                    warning = false;
+                }
                 NotesModel notesModel = new NotesModel()
                 {
                     IdNote = Convert.ToInt32(id),
@@ -121,6 +132,7 @@ namespace MinhThanhManagement.ViewModel
                     NoteDate = NoteDatePicker,
                     EndDate = EndNoteDatePicker,
                     StatusNote = false,
+                    Warning = warning,
                 };
                 GlobalDef.ListNotesModel.Add(notesModel);
                 CommonMethod commonMethod = new CommonMethod();
