@@ -28,8 +28,10 @@ namespace MinhThanhManagement
                     storeModel.Id = (Convert.ToInt32(models[0].ToString()));
                     storeModel.Group = (models[1]);
                     storeModel.Name = (models[2]);
-                    storeModel.Remain = (models[3]);
-                    storeModel.Price = (Convert.ToDouble(models[4].ToString()));
+                    storeModel.Quantanty = Convert.ToInt32(models[3]);
+                    storeModel.Sold = Convert.ToInt32(models[4]);
+                    storeModel.Remain = (Convert.ToInt32(models[3]) - Convert.ToInt32(models[4])).ToString();
+                    storeModel.Price = (Convert.ToDouble(models[5].ToString()));
                     ListStorageModel.Add(storeModel);
                 }
             }          
@@ -128,7 +130,8 @@ namespace MinhThanhManagement
                 stringBuilder.Append(item.Id.ToString() + ",");
                 stringBuilder.Append(item.Group.ToString() + ",");
                 stringBuilder.Append(item.Name.ToString() + ",");
-                stringBuilder.Append(item.Remain.ToString() + ",");
+                stringBuilder.Append(item.Quantanty.ToString() + ",");
+                stringBuilder.Append(item.Sold.ToString() + ",");
                 stringBuilder.Append(item.Price.ToString() + "\n");
             }
             if (!File.Exists(filePath + "MinhThanhManagement.csv"))

@@ -14,6 +14,20 @@ namespace MinhThanhManagement.Models
         private string name;
         private string remain;
         private double price;
+        private int quantanty;
+        private int sold;
+
+        public int Sold
+        {
+            get { return sold; }
+            set { sold = value; }
+        }
+
+        public int Quantanty
+        {
+            get { return quantanty; }
+            set { quantanty = value; }
+        }
 
         public int Id
         {

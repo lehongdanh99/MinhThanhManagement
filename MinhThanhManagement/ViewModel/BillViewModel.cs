@@ -168,7 +168,7 @@ namespace MinhThanhManagement.ViewModel
         public BillViewModel() {
             foreach (var item in GlobalDef.ListStorageModel)
             {
-                ListAutoComplete.Add(item.Group + " " + item.Name);
+                ListAutoComplete.Add(item.Group + "-" + item.Name);
             }
 
             DeleteItemToBillCommand = new RelayCommand(DeleteItem);
@@ -236,7 +236,7 @@ namespace MinhThanhManagement.ViewModel
         {
             if(!string.IsNullOrEmpty(groupname))
             {
-                string[] s = groupname.Split(' ');
+                string[] s = groupname.Split('-');
                 string name = s[1].ToString();
 
                 foreach (var item in GlobalDef.ListStorageModel)
