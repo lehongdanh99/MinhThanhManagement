@@ -61,7 +61,7 @@ namespace MinhThanhManagement.View
                     || !string.IsNullOrEmpty(TxtAddress.ToString())
                     || !string.IsNullOrEmpty(TxtPhone.ToString()))
                 {
-                    AddGroupStackpanel.Visibility = Visibility.Collapsed;
+                    AddGroupStackpanel.Visibility = Visibility.Hidden;
                     CancelButton.Visibility = Visibility.Collapsed;
                     dataGridTempDelete.Visibility = Visibility.Collapsed;
                     PrintButton.Visibility = Visibility.Collapsed;
@@ -72,7 +72,7 @@ namespace MinhThanhManagement.View
                         
                         printDialog.PrintVisual(billPage, "Invoice");
 
-                        MessageBox.Show("Đã xuất file PDF");
+                        MessageBox.Show("Đã xuất file PDF","Thông báo",MessageBoxButton.OK);
                         this.Hide();
                         AddGroupStackpanel.Visibility = Visibility.Visible;
                         CancelButton.Visibility = Visibility.Visible;
