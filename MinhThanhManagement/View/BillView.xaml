@@ -150,18 +150,29 @@
             </Setter>
         </Style>
 
+        <Style x:Key="DataGridRowStyleBill" TargetType="{x:Type DataGridRow}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        </Style>
+        <Style x:Key="styleDataGrid" TargetType="{x:Type DataGrid}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
         <Style x:Key="gridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="auto"/>
             <Setter Property="Margin" Value="0 5 0 0"/>
         </Style>
     </Window.Resources>
     <Border Background="#eff2f7" CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -184,8 +195,8 @@
                     <TextBlock HorizontalAlignment="Left" FontWeight="Black" FontSize="16" Text="Số : ......................."/>
                 </StackPanel>
             </Grid>
-            <TextBlock Grid.Row="1" FontSize="18" FontWeight="Black" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Center" Text="HÓA ĐƠN BÁN LẺ"/>
-            <Border CornerRadius="10" Grid.Row="2" Margin="10" BorderBrush="Black" Background="White" BorderThickness="1" Height="auto" Padding="0 0 0 10">
+            <TextBlock Grid.Row="1" FontSize="18" FontWeight="Black" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" Text="HÓA ĐƠN BÁN LẺ"/>
+            <Border CornerRadius="10" Grid.Row="2" Margin="5" Background="White" BorderThickness="1" Height="auto" Padding="0 0 0 10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -265,49 +276,52 @@
                 
             </Grid>
             <DataGrid Height="auto" x:Name="DataGridXaml" ItemsSource="{Binding ListItemsBill}" AutoGenerateColumns="False"
-                              Grid.Row="4" Margin="10,0,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="True" 
-                               VerticalScrollBarVisibility="Hidden">
+                              Grid.Row="4" Margin="10,-8,10,0" SelectedIndex="{Binding SelectedItemStorage}" SelectionMode="Single" 
+                      ColumnHeaderStyle="{DynamicResource gridHeaderStyle}" IsReadOnly="True" AlternatingRowBackground="White"
+                               VerticalScrollBarVisibility="Hidden" RowStyle="{DynamicResource DataGridRowStyleBill}"
+                        GridLinesVisibility="All" HorizontalScrollBarVisibility="Hidden">
                 <DataGrid.Columns>
                     
                     <DataGridTextColumn Header="Tên Hàng - Quy cách" CanUserResize="False" Width="Auto" Binding="{Binding ItemName}">
-                        <DataGridTextColumn.CellStyle>
+                        <!--<DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn.CellStyle>-->
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="ĐV Tính" CanUserResize="False" Width="*" Binding="{Binding Unit}">
-                        <DataGridTextColumn.CellStyle>
+                        <!--<DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn.CellStyle>-->
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Số Lượng" CanUserResize="False" Width="*" Binding="{Binding Count}">
-                        <DataGridTextColumn.CellStyle>
+                        <!--<DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn.CellStyle>-->
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Đơn Giá" CanUserResize="False" Width="*" Binding="{Binding Price}">
-                        <DataGridTextColumn.CellStyle>
+                        <!--<DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn.CellStyle>-->
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Thành tiền" CanUserResize="False" Width="*" Binding="{Binding PriceFinal}">
-                        <DataGridTextColumn.CellStyle>
+                        <!--<DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
+                                
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
-                        </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn.CellStyle>-->
                     </DataGridTextColumn>
                     <DataGridTemplateColumn x:Name="dataGridTempDelete" Header="Xóa" IsReadOnly="False" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
@@ -338,13 +352,13 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label Content="{Binding Total}" FontWeight="Bold" HorizontalAlignment="Right" Margin="0 0 10 0"/>
-                    <TextBox Text="{Binding PreOrder}" HorizontalAlignment="Right" Margin="0 0 10 0"/>
+                    <TextBox Text="{Binding PreOrder}" HorizontalAlignment="Right" Margin="0 0 13 0"/>
                     <Label Content="{Binding TotalFinal}" FontWeight="Bold" HorizontalAlignment="Right" Margin="0 0 10 0"/>
                     
                 </StackPanel>
                 
             </Grid>
-            <StackPanel Orientation="Horizontal" Grid.Row="6" Width="auto" HorizontalAlignment="Right" Margin="10">
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Width="auto" HorizontalAlignment="Left" Margin="10">
                 <Button x:Name="CancelButton" Background="Red" Width="150" Margin="5" Click="close_page">
                     <TextBlock Text="Hủy"></TextBlock>
                 </Button>

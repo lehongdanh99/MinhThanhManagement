@@ -57,7 +57,7 @@ namespace MinhThanhManagement.ViewModel
             }
         }
 
-        private string txtUnit;
+        private string txtUnit = "Cái";
 
         public string TxtUnit
         {
@@ -78,8 +78,9 @@ namespace MinhThanhManagement.ViewModel
         public double PreOrder
         {
             get { return preOrder; }
-            set { preOrder = value; TotalFinal = Total - PreOrder;
-                OnPropertyChanged(nameof(TotalFinal));
+            set { preOrder = value;
+                GetTotalFinal();
+               
             }
         }
 
@@ -88,7 +89,7 @@ namespace MinhThanhManagement.ViewModel
         public double TotalFinal
         {
             get { return totalFinal; }
-            set { totalFinal = value; TotalFinal = Total - PreOrder; }
+            set { totalFinal = value; }
         }
 
 
@@ -116,6 +117,7 @@ namespace MinhThanhManagement.ViewModel
                     if(Count > 0)
                     {
                         PriceAutoCount = Count * PriceAuto;
+                        OnPropertyChanged(nameof(PriceAutoCount));
                     }
                 }
             }
@@ -227,6 +229,16 @@ namespace MinhThanhManagement.ViewModel
             GetTotal(ListItemsBill);
         }
 
+        private void GetTotalFinal()
+        {
+            if(PreOrder > Total)
+            {
+                PreOrder = Total;
+            }    
+            TotalFinal = Total - PreOrder;
+            OnPropertyChanged(nameof(TotalFinal));
+            OnPropertyChanged(nameof(PreOrder));
+        }
         private void DeleteItem()
         {
             foreach (var item in ListItemsBill.ToList())
@@ -246,13 +258,13 @@ namespace MinhThanhManagement.ViewModel
             Total = 0;
             foreach(var item in listBill)
             {
-                if(string.IsNullOrEmpty(item.Price))
+                if(string.IsNullOrEmpty(item.PriceFinal))
                 {
-                    item.Price = "0";
+                    item.PriceFinal = "0";
                 }    
-                Total += (Convert.ToDouble(item.Price));
+                Total += (Convert.ToDouble(item.PriceFinal));
             }
-
+            GetTotalFinal();
             OnPropertyChanged(nameof(Total));
             OnPropertyChanged(nameof(TotalFinal));
         }
