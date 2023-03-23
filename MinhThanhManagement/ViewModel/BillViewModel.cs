@@ -166,6 +166,21 @@ namespace MinhThanhManagement.ViewModel
 
         //List<string> items = new List<string>();
         public BillViewModel() {
+
+            for(int i = 0; i< 10; i++)
+            {
+                ItemInBill item = new ItemInBill
+                    (
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                    );
+                ListItemsBill.Add(item);
+
+            }
+
             foreach (var item in GlobalDef.ListStorageModel)
             {
                 ListAutoComplete.Add(item.Group + "-" + item.Name);
@@ -187,12 +202,19 @@ namespace MinhThanhManagement.ViewModel
                     (
                     SelectedItemAutoComplete,
                     TxtUnit,
-                    Count,
-                    PriceAuto,
-                    PriceAutoCount
+                    Count.ToString(),
+                    PriceAuto.ToString(),
+                    PriceAutoCount.ToString()
                     );
-
-                ListItemsBill.Add(item);
+                for(int i = 0; i < ListItemsBill.Count; i++)
+                {
+                    if(ListItemsBill[i].ItemName == "")
+                    {
+                        ListItemsBill[i] = item;
+                        break;
+                    }    
+                }    
+                
                 SelectedItemAutoComplete = "";
                 TxtUnit = "";
                 Count = 0;
@@ -224,7 +246,11 @@ namespace MinhThanhManagement.ViewModel
             Total = 0;
             foreach(var item in listBill)
             {
-                Total += item.Price;
+                if(string.IsNullOrEmpty(item.Price))
+                {
+                    item.Price = "0";
+                }    
+                Total += (Convert.ToDouble(item.Price));
             }
 
             OnPropertyChanged(nameof(Total));
