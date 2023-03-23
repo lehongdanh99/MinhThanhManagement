@@ -61,25 +61,25 @@ namespace MinhThanhManagement.Models
             set { unit = value; }
         }
 
-        private int count;
+        private string count;
 
-        public int Count
+        public string Count
         {
             get { return count; }
             set { count = value; }
         }
 
-        private double price;
+        private string price;
 
-        public double Price
+        public string Price
         {
             get { return price; }
             set { price = value; }
         }
 
-        private double priceFinal;
+        private string priceFinal;
 
-        public double PriceFinal
+        public string PriceFinal
         {
             get { return priceFinal; }
             set { priceFinal = value; }
@@ -93,7 +93,7 @@ namespace MinhThanhManagement.Models
             set { isCheck = value; }
         }
 
-        public ItemInBill(string ItemName, string Unit, int Count, double Price, double PriceFinal)
+        public ItemInBill(string ItemName, string Unit, string Count, string Price, string PriceFinal)
         {
             this.ItemName = ItemName;
             this.Unit = Unit;
