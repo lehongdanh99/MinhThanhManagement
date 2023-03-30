@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\obj\Debug\
+D:\MinhThanhManagement\MinhThanhManagement\obj\Debug\
 MinhThanhManagement
 none
 false
 DEBUG;TRACE
-C:\Users\Tphan\OneDrive\Máy tính\MinhThanhGit\MinhThanhManagement\MinhThanhManagement\App.xaml
-5529395764
+D:\MinhThanhManagement\MinhThanhManagement\App.xaml
+91867885005
 
-16-196776637
-126941808290
-MainWindow.xaml;ResouceXaml.xaml;View\DetailStorageView.xaml;View\HomeView.xaml;View\NoteView.xaml;
+27-2022172516
+128-1621619233
+MainWindow.xaml;ResouceXaml.xaml;View\BillView.xaml;View\DetailNoteView.xaml;View\DetailStorageView.xaml;View\HistoryView.xaml;View\HomeView.xaml;View\NoteView.xaml;View\StatisticsView.xaml;
 
 False
 

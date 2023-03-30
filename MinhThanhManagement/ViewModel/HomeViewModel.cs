@@ -35,6 +35,8 @@ namespace MinhThanhManagement.ViewModel
         public ICommand NavigateBillCommand { get; private set; }
 
         public ICommand NavigateHistoryCommand { get; private set; }
+
+        public ICommand NavigateStatisCommand { get; private set; }
         public ICommand AddCommand { get; private set; }
 
         private ObservableCollection<StorageModel> listStorage = new ObservableCollection<StorageModel>();
@@ -173,7 +175,8 @@ namespace MinhThanhManagement.ViewModel
                 }
                 return listStorage; 
             }
-            set { listStorage = value; OnPropertyChanged(nameof(ListStorage)); }
+            set { listStorage = value;
+                OnPropertyChanged(nameof(ListStorage)); }
         }
         public HomeViewModel()
         {
@@ -203,7 +206,7 @@ namespace MinhThanhManagement.ViewModel
             NavigateNoteCommand = new RelayCommand(NavigateHometoNoteCommand);
             NavigateBillCommand = new RelayCommand(NavigateHometoBillCommand);
             NavigateHistoryCommand = new RelayCommand(NavigateHometoHistoryCommand);
-            
+            NavigateStatisCommand = new RelayCommand(NavigateHometoStatisCommand);
             GlobalDef.ListStorageModel = commonMethod.ReadFileCsv();
             
         }
@@ -271,7 +274,10 @@ namespace MinhThanhManagement.ViewModel
         {
             BillView.GetInstance().Show();
         }
-
+        private void NavigateHometoStatisCommand()
+        {
+            StatisticsView.GetInstance().Show();
+        }
         private void NavigateHometoHistoryCommand()
         {
             HistoryViewModel.GetInstance().ReadFileinFolder();

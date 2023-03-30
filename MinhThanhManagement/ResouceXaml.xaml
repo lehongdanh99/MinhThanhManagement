@@ -8,5 +8,6 @@
     <viewmodel:DetailStorageViewModel x:Key="DetailStorageViewModel"></viewmodel:DetailStorageViewModel>
     <viewmodel:DetailNoteViewModel x:Key="DetailNoteViewModel"></viewmodel:DetailNoteViewModel>
     <viewmodel:HistoryViewModel x:Key="HistoryViewModel"></viewmodel:HistoryViewModel>
+    <viewmodel:StatisticsViewModel x:Key="StatisticsViewModel"></viewmodel:StatisticsViewModel>
     
 </ResourceDictionary>
