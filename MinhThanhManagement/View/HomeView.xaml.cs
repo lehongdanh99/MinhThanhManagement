@@ -83,9 +83,13 @@ namespace MinhThanhManagement.View
                     GlobalDef.ListStorageModel[rowIndex].Name = editedValue;
                 if (type.Equals("Price"))
                     GlobalDef.ListStorageModel[rowIndex].Price = Convert.ToDouble(editedValue);
+                if (type.Equals("Sold"))
+                    GlobalDef.ListStorageModel[rowIndex].Sold = Convert.ToInt32(editedValue);
+                GlobalDef.ListStorageModel[rowIndex].Remain = (GlobalDef.ListStorageModel[rowIndex].Quantanty - Convert.ToInt32(editedValue)).ToString();
                 if (type.Equals("Remain"))
                     GlobalDef.ListStorageModel[rowIndex].Remain = editedValue;
                 // Handle the edited value here
+
             }
         }
 

@@ -133,7 +133,8 @@ namespace MinhThanhManagement.ViewModel
         }
 
 
-        public int SelectedItemStorage
+       
+         public int SelectedItemStorage
         {
             get
             {
@@ -149,7 +150,6 @@ namespace MinhThanhManagement.ViewModel
 
             }
         }
-
 
         public List<string> TypeStorage
         {
@@ -167,7 +167,12 @@ namespace MinhThanhManagement.ViewModel
 
         public ObservableCollection<StorageModel> ListStorage
         {
-            get { return listStorage; }
+            get { if(listStorage == null)
+                {
+                    ListStorage= new ObservableCollection<StorageModel>();
+                }
+                return listStorage; 
+            }
             set { listStorage = value; OnPropertyChanged(nameof(ListStorage)); }
         }
         public HomeViewModel()
@@ -177,8 +182,17 @@ namespace MinhThanhManagement.ViewModel
         }
         public void Initialize()
         {
+            ObservableCollection<StorageModel> storageModels = new ObservableCollection<StorageModel>();
             ListStorage = commonMethod.ReadFileCsv();
-            ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+            var collectionView = ListStorage.OrderBy(x=>x.Group).ToList();
+            foreach (var storageModel in collectionView) { 
+                storageModels.Add(storageModel);
+            }
+            ListDataStorage = CollectionViewSource.GetDefaultView(storageModels);
+            //ListDataStorage.SortDescriptions.Add(new SortDescription(storageModel.Group.ToString(), ListSortDirection.Ascending));
+            //ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage.OrderBy(x => x).ToList());
+            //ListDataStorage = CollectionViewSource.GetDefaultView(ListStorage);
+            
 
             GetGroupStorage(ListStorage);
             //gonext to other screen
