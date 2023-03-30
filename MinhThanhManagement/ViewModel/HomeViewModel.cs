@@ -279,13 +279,14 @@ namespace MinhThanhManagement.ViewModel
         }
         private void SaveStorageCommand()
         {
-            //ListStorage = GlobalDef.ListStorageModel;
+            ListStorage = GlobalDef.ListStorageModel;
             if (commonMethod.WriteFileCsv(ListStorage, GlobalDef.CsvPath))
             {
                 MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 TxtVisibleAlert = Visibility.Collapsed;
             }
             else MessageBox.Show("Lưu thất bại lien hệ Danh :(", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            ReloadStorageCommand();
         }
         private void DeleteStorageCommand()
         {

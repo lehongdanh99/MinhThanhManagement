@@ -88,7 +88,7 @@ namespace MinhThanhManagement.ViewModel
                     Id = id,
                     Group = GroupTxt,
                     Name = NameTxt,
-                    Remain = QuantantyTxt.ToString(),
+                    Remain = QuantantyTxt,
                     Price = PriceTxt,
                 };
                 GlobalDef.ListStorageModel.Add(storageModel);

@@ -30,7 +30,7 @@ namespace MinhThanhManagement
                     storeModel.Name = (models[2]);
                     storeModel.Quantanty = Convert.ToInt32(models[3]);
                     storeModel.Sold = Convert.ToInt32(models[4]);
-                    storeModel.Remain = (Convert.ToInt32(models[3]) - Convert.ToInt32(models[4])).ToString();
+                    storeModel.Remain = (Convert.ToInt32(models[3]) - Convert.ToInt32(models[4]));
                     storeModel.Price = (Convert.ToDouble(models[5].ToString()));
                     ListStorageModel.Add(storeModel);
                 }

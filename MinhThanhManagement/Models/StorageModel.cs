@@ -12,7 +12,7 @@ namespace MinhThanhManagement.Models
         private int id;
         private string group;
         private string name;
-        private string remain;
+        private int remain;
         private double price;
         private int quantanty;
         private int sold;
@@ -51,7 +51,7 @@ namespace MinhThanhManagement.Models
 
 
 
-        public string Remain
+        public int Remain
         {
             get { return remain; }
             set { remain = value; }
